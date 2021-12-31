@@ -7,6 +7,7 @@
     <!-- Database variable -->
     <script type="text/javascript" src="./StaticDB/ProductsDB.js">
     </script>
+    
     <!-- Database variable -->
 
     <meta charset="utf-8">
@@ -48,10 +49,10 @@
     <div>
         <div class="row">
           <div class="col col col-lg-8" >
-            <img src="./assets/banner.png" alt="banner_img" height="100%" width="100%">
+            <img src="./assets/banner.png" alt="banner_img" height="80%" width="100%">
           </div>
           <div class="col col col-lg-4" >
-            <img src="./assets/3DModel.png" alt="banner_img" height="100%" width="100%">
+            <img src="./assets/3DModel.png" alt="banner_img" height="60%" width="80%">
           </div>
 <!-- About Section -->
           <div  class="row about-section">
@@ -81,32 +82,33 @@
             </div>
                     <div class="row" id="products">
 
+
+
                     </div>
             
             <script type="text/javascript">
-      
-                  // var name = products[0].name;
-                  // var str = "Name:" + name ;
-                  // document.getElementById(
-                  //     'text').innerHTML = str;
+              function loadProduct(id) {
+                window.location.href = "/product.html?productId="+id;
+               console.log(id);
+
+}
 
           document.getElementById('products').innerHTML = products.map(product => 
-            `<div  class="col col-lg-4">
-         <img alt="product_image" src=${product.image[0]} />     
-          </div>
-          <p>${product.name}</p>
-          <p>${product.price}</p>
-    </div>
-
-            </div>`
+            `<div  class="col-lg-3 product-single" onclick="loadProduct(${product.id})">
+                <div class="product-single-image">
+                   <img class="responsive" alt="product_image" src=${product.image[0]}   /> 
+                </div>    
+                <div>
+                <p>${product.name}</p>
+                <p>${product.price}</p>
+              </div>
+              </div>
+             `
         ).join('')
 
      
           </script>
-           
-          
-                
-           
+                 
            </div>
          
         </div>
