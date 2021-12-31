@@ -1,0 +1,23 @@
+.navbar-brand {
+    font-family: Be Vietnam Pro;
+    font-size: 5rem !important;
+    color: #4A4A4A;
+    
+}
+
+.section-heading{
+    font-size: 4rem !important;
+    color: #4A4A4A;
+    font-family: Be Vietnam Pro;
+    text-align: center;
+width: 100%;
+}
+
+.about-section{
+   padding-left: 10% !important;
+   padding-right: 10% !important;
+}
+
+.section-text{
+    font-size: 2rem;
+}
