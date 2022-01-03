@@ -1,10 +1,19 @@
 .navbar-brand {
     font-family: Be Vietnam Pro;
-    font-size: 5rem !important;
+    font-size: 6rem !important;
     color: #4A4A4A;
+
     
 }
 
+.nav-link{
+    font-size: 2rem !important;
+    margin-left: 1rem !important;
+}
+
+.navbar-collapse{
+    justify-content: end !important;
+}
 .section-heading{
     font-size: 4rem !important;
     color: #4A4A4A;
@@ -27,7 +36,7 @@
 border: 1px solid black;
 margin:1rem !important;
 width: 33%;
-height: 600px;
+height: 500px;
 }
 
 
