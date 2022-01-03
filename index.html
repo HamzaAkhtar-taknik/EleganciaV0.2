@@ -62,7 +62,8 @@
           <div class="col col col-lg-4" >
           <div class="container" >
             <!-- class="col col col-lg-4"  <img src="./assets/3DModel.png" alt="banner_img" height="60%" width="80%">  margin-top: -9px;-->
-            <model-viewer camera-controls alt="Model" src="./assets/chair1.glb"  height="100%" width="100%" >
+            <model-viewer style="width: 100%;
+            height: 100%;" camera-controls alt="Model" src="./assets/chair1.glb" >
             </model-viewer>
           </div>
         </div>
@@ -126,7 +127,7 @@
                 <div class="product-single-image">
                    <img class="responsive" alt="product_image" src=${product.image[0]}   /> 
                 </div>    
-                <div>
+                <div style="display:flex; flex-direction: column; justifiy-content: center; align-items: center">
                 <p>${product.name}</p>
                 <p>${product.price}</p>
               </div>
