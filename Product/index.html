@@ -49,18 +49,31 @@
 
         <div  style="justify-content: center;" class="col col col-lg-5">
           <div class="product-image-list">
-                <div  class="product-image-btn" id="product-image-1" >
-                
+
+                <div class="product-image-btn" id="product-image-1" onclick="updateModel(productId)">
 
                 </div>
-                <div  class="product-image-btn"  id="product-image-2"  >
+                <div  class="product-image-btn"  id="product-image-2" onclick="updateModel(productId + '_2')" >
                 
                 </div>
-                <div class="product-image-btn"  id="product-image-3">
+                <div class="product-image-btn"  id="product-image-3" onclick="updateModel(productId + '_3')">
+                
+                    
                 
                 </div>
 
+                <script >
 
+                    function updateModel(modelId) {
+
+                                document.getElementById(
+                                        "product-large-image"
+                                         ).innerHTML = ` <model-viewer class="responsive"
+                                         camera-controls alt="Model" src= "./../assets/${modelId}.glb" height="100%" width="100%" >
+                                        </model-viewer/> `;
+                            }
+                </script>
+                    
 
 
                 
@@ -68,6 +81,8 @@
         </div>
       </div>
 
+      
+    
       <div class="col col col-lg-6">
         <div>
           <h1>About it:</h1>
