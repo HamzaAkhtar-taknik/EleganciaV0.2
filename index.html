@@ -60,13 +60,11 @@
             <img src="./assets/banner.png" alt="banner_img" height="80%" width="100%">
           </div>
           <div class="col col col-lg-4" >
-          <div class="container" >
             <!-- class="col col col-lg-4"  <img src="./assets/3DModel.png" alt="banner_img" height="60%" width="80%">  margin-top: -9px;-->
             <model-viewer style="width: 100%;
             height: 100%;" camera-controls alt="Model" src="./assets/chair1.glb" >
             </model-viewer>
           </div>
-        </div>
         </div>
 <!-- About Section -->
           <div  class="row about-section">
@@ -87,13 +85,13 @@
               </p>
             </div>
 
-            <div  class="col-lg-4">
-              <div  class="col col col-lg-">
+            <div  class="col col col-lg-4">
+              
                 <div class="container" >
                   <model-viewer camera-controls alt="Model" src="./assets/chair3.glb"  height="100%" width="100%" >
                   </model-viewer>
                 </div>
-              </div>
+              
             </div>
 
             </div>
@@ -116,8 +114,8 @@
             
             <script type="text/javascript">
               function loadProduct(id) {
-                window.location.href = "/product.html?productId="+id;
-                
+              //  window.location.href = "/product.html?productId="+id;
+              window.location.href = "/products/product.html?productId="+id;
                console.log(id);
 
 }
