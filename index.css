@@ -8,7 +8,7 @@
 
 .nav-link{
     font-size: 2rem !important;
-    margin-left: 1rem !important;
+    margin-right: 1.5rem !important;
 }
 
 .navbar-collapse{
@@ -55,6 +55,13 @@ height: 500px;
     height: 80%;
 }
 
+.product-image-list{
+    display: flex;
+
+ justify-content: end !important;
+ align-items: center !important;
+}
+
 #view-in-your-space{
     border: 1px solid #000000;
     border-radius: 24px;
@@ -68,7 +75,12 @@ height: 500px;
     margin: 3rem;
 }
 
+.product-image-btn:hover{
 
+    cursor: pointer;
+    border-radius: 1rem;
+    background-color: rgba(128, 128, 128, 0.281);
+}
 
 
 .container {
