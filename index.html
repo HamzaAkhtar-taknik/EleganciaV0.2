@@ -28,14 +28,7 @@
   </head>
   <body>
 
-    <script type="module">
-      import { App } from './app.js';
-
-      document.addEventListener("DOMContentLoaded", function(){
-          const app = new App();
-          window.app = app;
-      });
-  </script>
+   
   
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
@@ -124,7 +117,7 @@
             <script type="text/javascript">
               function loadProduct(id) {
               //  window.location.href = "/product.html?productId="+id;
-             window.location.href = 'product/modelrenderer?productId='+id;
+             window.location.href = 'modelrenderer/?productId='+id;
              //window.location.href = 'https://github.com/shazadanjum2/EleganciaV0.2/blob/main/Product/index.html?raw=true/?productId='+id;
              //window.location.href = 'products/?productId='+id;
               //window.location.href='start/lecture3_11/?chair='+modelvalue;
