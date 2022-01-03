@@ -50,13 +50,13 @@
         <div  style="justify-content: center;" class="col col col-lg-5">
           <div class="product-image-list">
 
-                <div class="product-image-btn" id="product-image-1" onclick="updateModel(productId)">
+                <div class="product-image-btn" id="product-image-1" >
 
                 </div>
-                <div  class="product-image-btn"  id="product-image-2" onclick="updateModel(productId + '_2')" >
+                <div  class="product-image-btn"  id="product-image-2"  >
                 
                 </div>
-                <div class="product-image-btn"  id="product-image-3" onclick="updateModel(productId + '_3')">
+                <div class="product-image-btn"  id="product-image-3" >
                 
                     
                 
@@ -185,6 +185,7 @@
         productImgOne.style.backgroundColor = 'rgba(128, 128, 128, 0.281)'
         productImgTwo.style.backgroundColor = 'white';  
         productImgThree.style.backgroundColor = 'white';  
+        updateModel(productId );
       };
 
 
@@ -193,13 +194,15 @@
         productImgTwo.style.backgroundColor = 'rgba(128, 128, 128, 0.281)'
         productImgOne.style.backgroundColor = 'white';  
         productImgThree.style.backgroundColor = 'white';  
+        updateModel(productId + '_2');
       };
 
       
       productImgThree.onclick = function() {
         productImgThree.style.backgroundColor = 'rgba(128, 128, 128, 0.281)'
         productImgOne.style.backgroundColor = 'white';  
-        productImgTwo.style.backgroundColor = 'white';  
+        productImgTwo.style.backgroundColor = 'white'; 
+        updateModel(productId + '_3'); 
       };
 
 
