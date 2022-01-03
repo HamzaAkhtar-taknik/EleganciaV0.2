@@ -223,30 +223,6 @@ var products = [
     Set of 2.
     var ed.`,
   },
-
-  {
-    id: 9,
-    name: "Slim Sofa",
-    image: [SlimSofav1, SlimSofav2, SlimSofav3],
-    price: "$ 1,998",
-    about: `It's a grown-up addition to nurseries & playrooms.
-    The durable, hand-built wood frame.
-    Covered in your choice of beautiful leather.`,
-    dimensions: `Overall: 29"w x 37.5"d x 40.5"h.
-    Interior seat width: 24".
-    Seat 
-    Depth: 23.25"  Height: 18".
-    Back height: 40.5".
-    Required wall distance: 22".
-    Diagonal depth: 36".
-    Clearance: 4.5".
-    Packaged weight: 100 lbs.`,
-    details: `Available in your choice of genuine top-grain leather or animal-friendly vegan leather.
-    Solid ash wood frame in a Pecan (stocked) or Walnut (made to order) finish.
-    Fiber-wrapped foam cushioning.
-    Hidden steel push-back mechanism.
-    Made in China.`,
-  },
   {
     id: 10,
     name: "Black Beauty",
