@@ -27,6 +27,15 @@
     <title>Elegancia</title>
   </head>
   <body>
+
+    <script type="module">
+      import { App } from './app.js';
+
+      document.addEventListener("DOMContentLoaded", function(){
+          const app = new App();
+          window.app = app;
+      });
+  </script>
   
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
