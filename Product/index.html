@@ -13,16 +13,7 @@
 
       <!-- Model viewer Script-->
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
-
-
-
-
-
-
-
-
-
-   
+  
 </head>
 <body>
 
@@ -55,7 +46,7 @@
             <script>
                 function onClickfun(){
                  console.log(productId);
-                 window.location.href='modelrenderer/?chair='+productId;
+                 window.location.href='modelrenderer/?productId='+productId;
                 }
               </script>
 
@@ -64,6 +55,9 @@
     </div>
 
     <script>
+
+
+
         urlp=[];s=location.toString().split('?');s=s[1].split('&');for(i=0;i<s.length;i++){u=s[i].split('=');urlp[u[0]]=u[1];}
        var productId = urlp['productId'];
        var productDetails;
