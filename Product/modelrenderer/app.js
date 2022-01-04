@@ -285,8 +285,7 @@ class App{
         });
         this.gestures.addEventListener( 'press', (ev)=>{
             //console.log( 'press' );    
-            //ev.initialise = undefined;
-            this.gestures = new ControllerGestures( this.renderer );
+            ev.initialise = undefined;
             self.ui.updateElement('info', 'press' );
         });
         this.gestures.addEventListener( 'pan', (ev)=>{
