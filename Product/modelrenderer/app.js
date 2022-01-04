@@ -311,7 +311,7 @@ class App{
         });
         this.gestures.addEventListener( 'pinch', (ev)=>{
             //console.log( ev ); 
-            self.knight.object.speed = 1;
+            self.knight.object.speed = 4;
  
             if (ev.initialise !== undefined){
                 self.startScale = self.knight.object.scale.clone();
