@@ -117,9 +117,8 @@
             <script type="text/javascript">
               function loadProduct(id) {
               //  window.location.href = "/product.html?productId="+id;
-             window.location.href = 'product/index.html?productId='+id;
+             window.location.href = 'Product/?productId='+id;
              //window.location.href = 'products/?productId='+id;
-              //window.location.href='start/lecture3_11/?chair='+modelvalue;
                console.log(id);
 
 }
@@ -130,6 +129,7 @@
                    <img class="responsive" alt="product_image" src=${product.image[0]}   /> 
                 </div>    
                 <div class ="product-single-detail">
+                <div style="display:flex; flex-direction: column; justifiy-content: center; align-items: center">
                 <p>${product.name}</p>
                 <p>${product.price}</p>
               </div>
