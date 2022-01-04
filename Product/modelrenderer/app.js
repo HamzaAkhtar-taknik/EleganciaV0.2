@@ -107,7 +107,7 @@ class App{
 
 				const options = {
 					object: object,
-					speed: 0.5,
+					speed: 1,
 					// animations: gltf.animations,
 					// clip: gltf.animations[0],
 					app: self,
@@ -311,8 +311,8 @@ class App{
         });
         this.gestures.addEventListener( 'pinch', (ev)=>{
             //console.log( ev ); 
-            self.knight.object.speed = 4;
- 
+        
+             
             if (ev.initialise !== undefined){
                 self.startScale = self.knight.object.scale.clone();
             }else{
