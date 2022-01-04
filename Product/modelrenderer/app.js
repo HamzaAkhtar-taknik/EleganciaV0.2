@@ -67,8 +67,8 @@ class App{
         // this.scene.add( plane );
 
         //Create a helper for the shadow camera (optional)
-        const helper = new THREE.CameraHelper( light.shadow.camera );
-        this.scene.add( helper );
+        // const helper = new THREE.CameraHelper( light.shadow.camera );
+        // this.scene.add( helper );
         
         this.controls = new OrbitControls( this.camera, this.renderer.domElement );
         this.controls.target.set(0, 3.5, 0);
