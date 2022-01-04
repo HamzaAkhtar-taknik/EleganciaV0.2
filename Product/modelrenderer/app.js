@@ -29,46 +29,17 @@ class App{
 
         const light = new THREE.DirectionalLight( 0xffffff );
         light.position.set( 1, 1, 1 ).normalize(); // default; light shining from top
-
-        light.castShadow = true; // default false
-
 		this.scene.add( light );
 			
 		this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true } );
 		this.renderer.setPixelRatio( window.devicePixelRatio );
 		this.renderer.setSize( window.innerWidth, window.innerHeight );
 
-        this.renderer.shadowMap.enabled = true;
-        this.renderer.shadowMap.type = THREE.PCFSoftShadowMap; // default THREE.PCFShadowMap
-
         this.renderer.outputEncoding = THREE.sRGBEncoding;
         
 		container.appendChild( this.renderer.domElement );
 
-        //Set up shadow properties for the light
-        light.shadow.mapSize.width = 512; // default
-        light.shadow.mapSize.height = 512; // default
-        light.shadow.camera.near = 0.5; // default
-        light.shadow.camera.far = 500; // default
-
-        //Create a sphere that cast shadows (but does not receive them)
-        // const sphereGeometry = new THREE.SphereGeometry( 5, 32, 32 );
-        // const sphereMaterial = new THREE.MeshStandardMaterial( { color: 0xff0000 } );
-        // const sphere = new THREE.Mesh( sphereGeometry, sphereMaterial );
-        // sphere.castShadow = true; //default is false
-        // sphere.receiveShadow = false; //default
-        // this.scene.add( sphere );
-
-        //Create a plane that receives shadows (but does not cast them)
-        // const planeGeometry = new THREE.PlaneGeometry( 20, 20, 32, 32 );
-        // const planeMaterial = new THREE.MeshStandardMaterial( { color: 0x00ff00 } )
-        // const plane = new THREE.Mesh( planeGeometry, planeMaterial );
-        // plane.receiveShadow = true;
-        // this.scene.add( plane );
-
-        //Create a helper for the shadow camera (optional)
-        // const helper = new THREE.CameraHelper( light.shadow.camera );
-        // this.scene.add( helper );
+       
         
         this.controls = new OrbitControls( this.camera, this.renderer.domElement );
         this.controls.target.set(0, 3.5, 0);
@@ -310,10 +281,12 @@ class App{
 
                 self.scene.add( self.knight.object ); 
             }
+            ev.initialise = undefined;
         });
         this.gestures.addEventListener( 'doubletap', (ev)=>{
             //console.log( 'doubletap'); 
             self.ui.updateElement('info', 'doubletap' );
+            ev.initialise = undefined;
         });
         this.gestures.addEventListener( 'press', (ev)=>{
             //console.log( 'press' );    
@@ -328,7 +301,8 @@ class App{
                 const pos = self.startPosition.clone().add( ev.delta.multiplyScalar(3) );
                 self.knight.object.position.copy( pos );
                 self.ui.updateElement('info', `pan x:${ev.delta.x.toFixed(3)}, y:${ev.delta.y.toFixed(3)}, z:${ev.delta.z.toFixed(3)}` );
-            } 
+            }
+            ev.initialise = undefined; 
         });
         this.gestures.addEventListener( 'swipe', (ev)=>{
             //console.log( ev );   
@@ -337,6 +311,7 @@ class App{
             //     self.knight.object.visible = false;
             //     self.scene.remove( self.knight.object ); 
             // }
+            ev.initialise = undefined;
         });
         this.gestures.addEventListener( 'pinch', (ev)=>{
             //console.log( ev );  
@@ -347,6 +322,7 @@ class App{
                 self.knight.object.scale.copy( scale );
                 self.ui.updateElement('info', `pinch delta:${ev.delta.toFixed(3)} scale:${ev.scale.toFixed(2)}` );
             }
+            ev.initialise = undefined;
         });
         this.gestures.addEventListener( 'rotate', (ev)=>{
             //      sconsole.log( ev ); 
@@ -359,6 +335,7 @@ class App{
 
                 self.ui.updateElement('info', `rotate ${ev.theta.toFixed(3)}`  );
             }
+            ev.initialise = undefined;
         });
         
         this.renderer.setAnimationLoop( this.render.bind(this) );
