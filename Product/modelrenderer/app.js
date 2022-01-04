@@ -289,11 +289,11 @@ class App{
         this.gestures.addEventListener( 'press', (ev)=>{
             //console.log( 'press' );    
             //ev.initialise = undefined;
-            this.gestures = new ControllerGestures( this.renderer );
             self.ui.updateElement('info', 'press' );
         });
         this.gestures.addEventListener( 'pan', (ev)=>{
             //console.log( ev );
+            ev.initialise = null;
             if (ev.initialise !== undefined){
                 self.startPosition = self.knight.object.position.clone();
             }else{
@@ -312,8 +312,7 @@ class App{
         });
         this.gestures.addEventListener( 'pinch', (ev)=>{
             //console.log( ev ); 
-        
-             
+            ev.initialise = null;
             if (ev.initialise !== undefined){
                 self.startScale = self.knight.object.scale.clone();
             }else{
@@ -324,6 +323,7 @@ class App{
         });
         this.gestures.addEventListener( 'rotate', (ev)=>{
             //      sconsole.log( ev ); 
+            ev.initialise = null;
             if (ev.initialise !== undefined){
                 self.startQuaternion = self.knight.object.quaternion.clone();
             }else{
