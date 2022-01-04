@@ -285,6 +285,8 @@ class App{
         });
         this.gestures.addEventListener( 'press', (ev)=>{
             //console.log( 'press' );    
+            //ev.initialise = undefined;
+            this.gestures = new ControllerGestures( this.renderer );
             self.ui.updateElement('info', 'press' );
         });
         this.gestures.addEventListener( 'pan', (ev)=>{
@@ -294,7 +296,7 @@ class App{
             }else{
                 const pos = self.startPosition.clone().add( ev.delta.multiplyScalar(3) );
                 self.knight.object.position.copy( pos );
-                self.ui.updateElement('info', `pan x:${ev.delta.x.toFixed(3)}, y:${ev.delta.y.toFixed(3)}, x:${ev.delta.z.toFixed(3)}` );
+                self.ui.updateElement('info', `pan x:${ev.delta.x.toFixed(3)}, y:${ev.delta.y.toFixed(3)}, z:${ev.delta.z.toFixed(3)}` );
             } 
         });
         this.gestures.addEventListener( 'swipe', (ev)=>{
