@@ -107,7 +107,7 @@ class App{
 
 				const options = {
 					object: object,
-					speed: 1,
+					speed: 2,
 					// animations: gltf.animations,
 					// clip: gltf.animations[0],
 					app: self,
@@ -289,17 +289,18 @@ class App{
         this.gestures.addEventListener( 'press', (ev)=>{
             //console.log( 'press' );    
             //ev.initialise = undefined;
+            this.gestures = new ControllerGestures( this.renderer );
             self.ui.updateElement('info', 'press' );
         });
         this.gestures.addEventListener( 'pan', (ev)=>{
             //console.log( ev );
-            // if (ev.initialise !== undefined){
-            //     self.startPosition = self.knight.object.position.clone();
-            // }else{
+            if (ev.initialise !== undefined){
+                self.startPosition = self.knight.object.position.clone();
+            }else{
                 const pos = self.startPosition.clone().add( ev.delta.multiplyScalar(3) );
                 self.knight.object.position.copy( pos );
                 self.ui.updateElement('info', `pan x:${ev.delta.x.toFixed(3)}, y:${ev.delta.y.toFixed(3)}, z:${ev.delta.z.toFixed(3)}` );
-           // } 
+            } 
         });
         this.gestures.addEventListener( 'swipe', (ev)=>{
             //console.log( ev );   
@@ -313,25 +314,25 @@ class App{
             //console.log( ev ); 
         
              
-            // if (ev.initialise !== undefined){
-            //     self.startScale = self.knight.object.scale.clone();
-            // }else{
+            if (ev.initialise !== undefined){
+                self.startScale = self.knight.object.scale.clone();
+            }else{
                 const scale = self.startScale.clone().multiplyScalar(ev.scale);
                 self.knight.object.scale.copy( scale );
                 self.ui.updateElement('info', `pinch delta:${ev.delta.toFixed(3)} scale:${ev.scale.toFixed(2)}` );
-           // }
+            }
         });
         this.gestures.addEventListener( 'rotate', (ev)=>{
             //      sconsole.log( ev ); 
-            // if (ev.initialise !== undefined){
-            //     self.startQuaternion = self.knight.object.quaternion.clone();
-            // }else{
+            if (ev.initialise !== undefined){
+                self.startQuaternion = self.knight.object.quaternion.clone();
+            }else{
                 self.knight.object.quaternion.copy( self.startQuaternion );
                 //self.knight.object.rotateY( ev.theta );
                 self.knight.object.rotateZ( ev.theta );
 
                 self.ui.updateElement('info', `rotate ${ev.theta.toFixed(3)}`  );
-            //}
+            }
         });
         
         this.renderer.setAnimationLoop( this.render.bind(this) );
