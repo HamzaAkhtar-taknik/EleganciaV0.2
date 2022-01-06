@@ -40,7 +40,21 @@ border: 1px solid black;
 margin:1rem !important;
 width: 33%;
 height: 550px;
+
+    transition: 0.5s all ease-in-out;
+    box-shadow:
+    inset 0 -1em 0.5em rgba(0,0,0,0.1),
+          0 0  0 0px rgb(255,255,255),
+          0.1em 0.1em 0.5em rgba(0,0,0,0.3);
 }
+
+.product-single:hover  {
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+
+
 
 
 #products{
