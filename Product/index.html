@@ -31,23 +31,38 @@
         window.app = app;
       });
     </script>
-
-    <div class="row">
-      <div class="row col-lg-6">
-        <div
-          style="height: 90%"
-          class="col col col-lg-12"
-          id="product-large-image"
-        >
-          <h1 id="product-name"></h1>
+    
+    <div class="row main-page" style="display: flex; width: 80%; margin : auto">
+        <div class="row">
+      <h1
+      id="product-name">
+      Product Name
+    </h1>
         </div>
-        <div class="col col col-lg-7">
+ 
+      <div class="row col-lg-6 col-sm-12">
+          <div 
+          style="position: relative;"
+          > 
+            <div
+              style="height: 100%; position: relative;"
+              class="col col col-lg-12"
+              id="product-large-image"
+            >
+            
+            
+            </div>
 
-        </div>
+            <div id="button-ar" style="position: absolute; bottom: 5px; right: 5px;">
+             
+            </div>
+            
+          </div>  
+       
 
 
 
-        <div  style="justify-content: center;" class="col col col-lg-5">
+        <div  style="display:flex; justify-content: center;;" class="col col col-lg-12" >
           <div class="product-image-list">
 
                 <div class="product-image-btn" id="product-image-1" >
@@ -83,7 +98,7 @@
 
       
     
-      <div class="col col col-lg-6">
+      <div class="col col col-lg-6 col-sm-12">
         <div>
           <h1>About it:</h1>
           <p id="product-about"></p>
@@ -131,9 +146,8 @@
         }
         console.log(productDetails);
         if (productDetails != null) {
-          document.getElementById(
-            "product-name"
-          ).innerHTML = `${product.name} `;
+       
+          console.log("This is product name:",product.name)
           //document.getElementById('product-large-image').innerHTML =` <img class="responsive" alt="product_image" src=${product.image[0]} width="500px" height="500px"   /> `;
           var path = "./../assets/" + productId + ".glb";
           console.log(path);
@@ -142,6 +156,16 @@
           ).innerHTML = ` <model-viewer class="responsive"
                     camera-controls alt="Model" src= "./../assets/${productId}.glb" height="100%" width="100%" >
                 </model-viewer/> `;
+
+        document.getElementById(
+            "product-name"
+          ).innerHTML = `${product.name} `;
+
+          document.getElementById(
+            "button-ar"
+          ).innerHTML = `<img src="../assets/AR-logo.png" height="50px" width="50px" alt="button-ar">`;
+
+        
 
           document.getElementById(
             "product-about"
@@ -163,6 +187,7 @@
           document.getElementById(
             "product-image-3"
           ).innerHTML = `<img src=".${product.image[2]}" height="100px" width ="100px"/>`;
+
 
         
 
