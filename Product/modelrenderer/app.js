@@ -2,12 +2,15 @@ import * as THREE from './../../libs/three125/three.module.js';
 import { OrbitControls } from './../../libs/three125/OrbitControls.js';
 import { GLTFLoader } from './../../libs/three125/GLTFLoader.js';
 
+
 import { Stats } from './../../libs/stats.module.js';
 import { CanvasUI } from './../../libs/three125/CanvasUI.js'
 import { ARButton } from './../../libs/ARButton.js';
 import { LoadingBar } from './../../libs/LoadingBar.js';
 import { Player } from './../../libs/three125/Player.js';
 import { ControllerGestures } from './../../libs/three125/ControllerGestures.js'; 
+import { WEBGL } from './../../libs//WebGL.js';
+
 //https://tympanus.net/codrops/2019/09/17/how-to-build-a-color-customizer-app-for-a-3d-model-with-three-js/
 //https://medium.com/@akashkuttappa/using-3d-models-with-ar-js-and-a-frame-84d462efe498
 //https://stackoverflow.com/questions/69185593/issues-displaying-glb-model-on-html
@@ -202,8 +205,16 @@ class App{
     }
     
     setupXR(id){
-        this.renderer.xr.enabled = true; 
+       this.renderer.xr.enabled = true; 
+
+        // if(WEBGL.isWebGLAvailable){
+        //     console.log('supported');
+        // } else {
+        //     console.log('not supported');
+        // }
         
+
+
         const self = this;
         let controller, controller1;
         
@@ -289,20 +300,20 @@ class App{
         this.gestures.addEventListener( 'press', (ev)=>{
             //console.log( 'press' );    
             //ev.initialise = undefined;
+            ev = 'undefined';
+            this.renderer.ev = 'undefined'
             self.ui.updateElement('info', 'press' );
         });
         this.gestures.addEventListener( 'pan', (ev)=>{
             //console.log( ev );
-            ev.initialise == 'undefined';
-            // if (ev.initialise !== undefined){
-            //     self.startPosition = self.knight.object.position.clone();
-            // }else{
+            
+            if (ev.initialise !== undefined){
+                self.startPosition = self.knight.object.position.clone();
+            }else{
                 const pos = self.startPosition.clone().add( ev.delta.multiplyScalar(3) );
                 self.knight.object.position.copy( pos );
                 self.ui.updateElement('info', `pan x:${ev.delta.x.toFixed(3)}, y:${ev.delta.y.toFixed(3)}, z:${ev.delta.z.toFixed(3)}` );
-            //} 
-            self.startPosition = self.knight.object.position.clone();
-
+            } 
         });
         this.gestures.addEventListener( 'swipe', (ev)=>{
             //console.log( ev );   
@@ -314,29 +325,25 @@ class App{
         });
         this.gestures.addEventListener( 'pinch', (ev)=>{
             //console.log( ev ); 
-            ev.initialise == 'undefined';
-            // if (ev.initialise !== undefined){
-            //     self.startScale = self.knight.object.scale.clone();
-            // }else{
+            if (ev.initialise !== undefined){
+                self.startScale = self.knight.object.scale.clone();
+            }else{
                 const scale = self.startScale.clone().multiplyScalar(ev.scale);
                 self.knight.object.scale.copy( scale );
                 self.ui.updateElement('info', `pinch delta:${ev.delta.toFixed(3)} scale:${ev.scale.toFixed(2)}` );
-            //}
-            self.startScale = self.knight.object.scale.clone();
+            }
         });
         this.gestures.addEventListener( 'rotate', (ev)=>{
             //      sconsole.log( ev ); 
-            ev.initialise == 'undefined';
-            // if (ev.initialise !== undefined){
-            //     self.startQuaternion = self.knight.object.quaternion.clone();
-            // }else{
+            if (ev.initialise !== undefined){
+                self.startQuaternion = self.knight.object.quaternion.clone();
+            }else{
                 self.knight.object.quaternion.copy( self.startQuaternion );
                 //self.knight.object.rotateY( ev.theta );
                 self.knight.object.rotateZ( ev.theta );
 
                 self.ui.updateElement('info', `rotate ${ev.theta.toFixed(3)}`  );
-            //}
-            self.startQuaternion = self.knight.object.quaternion.clone();
+            }
         });
         
         this.renderer.setAnimationLoop( this.render.bind(this) );
