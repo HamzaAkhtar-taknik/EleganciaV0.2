@@ -46,6 +46,7 @@ class App{
          this.renderer.shadowMap.enabled = true;
          this.renderer.shadowMap.type = THREE.PCFSoftShadowMap; // default THREE.PCFShadowMap
          this.renderer.gammaOutput = true;
+        // this.renderer.outputEncoding = THREE.sRGBEncoding;
          this.renderer.gammaFactor = 2.2;
 //window.addEventListener( 'resize', onWindowResize, false );
 
