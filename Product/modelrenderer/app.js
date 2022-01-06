@@ -298,13 +298,13 @@ class App{
         this.gestures.addEventListener( 'pan', (ev)=>{
             //console.log( ev );
             
-            if (ev.initialise !== undefined){
-                self.startPosition = self.knight.object.position.clone();
-            }else{
-                const pos = self.startPosition.clone().add( ev.delta.multiplyScalar(3) );
-                self.knight.object.position.copy( pos );
-                self.ui.updateElement('info', `pan x:${ev.delta.x.toFixed(3)}, y:${ev.delta.y.toFixed(3)}, z:${ev.delta.z.toFixed(3)}` );
-            } 
+            // if (ev.initialise !== undefined){
+            //     self.startPosition = self.knight.object.position.clone();
+            // }else{
+            //     const pos = self.startPosition.clone().add( ev.delta.multiplyScalar(3) );
+            //     self.knight.object.position.copy( pos );
+            //     self.ui.updateElement('info', `pan x:${ev.delta.x.toFixed(3)}, y:${ev.delta.y.toFixed(3)}, z:${ev.delta.z.toFixed(3)}` );
+            // } 
         });
         this.gestures.addEventListener( 'swipe', (ev)=>{
             //console.log( ev );   
