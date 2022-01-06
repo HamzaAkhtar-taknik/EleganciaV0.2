@@ -313,16 +313,23 @@ class App{
             //     self.knight.object.visible = false;
             //     self.scene.remove( self.knight.object ); 
             // }
-        });
-        this.gestures.addEventListener( 'pinch', (ev)=>{
-            //console.log( ev ); 
             if (ev.initialise !== undefined){
                 self.startScale = self.knight.object.scale.clone();
             }else{
                 const scale = self.startScale.clone().multiplyScalar(ev.scale);
                 self.knight.object.scale.copy( scale );
-                self.ui.updateElement('info', `pinch delta:${ev.delta.toFixed(3)} scale:${ev.scale.toFixed(2)}` );
+                self.ui.updateElement('info', `swipe delta:${ev.delta.toFixed(3)} scale:${ev.scale.toFixed(2)}` );
             }
+        });
+        this.gestures.addEventListener( 'pinch', (ev)=>{
+            //console.log( ev ); 
+            // if (ev.initialise !== undefined){
+            //     self.startScale = self.knight.object.scale.clone();
+            // }else{
+            //     const scale = self.startScale.clone().multiplyScalar(ev.scale);
+            //     self.knight.object.scale.copy( scale );
+            //     self.ui.updateElement('info', `pinch delta:${ev.delta.toFixed(3)} scale:${ev.scale.toFixed(2)}` );
+            // }
         });
         this.gestures.addEventListener( 'rotate', (ev)=>{
             //      sconsole.log( ev ); 
