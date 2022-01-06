@@ -9,7 +9,7 @@ import { ARButton } from './../../libs/ARButton.js';
 import { LoadingBar } from './../../libs/LoadingBar.js';
 import { Player } from './../../libs/three125/Player.js';
 import { ControllerGestures } from './../../libs/three125/ControllerGestures.js'; 
-import { WEBGL } from './../../libs//WebGL.js';
+//import { WEBGL } from './../../libs//WebGL.js';
 
 //https://tympanus.net/codrops/2019/09/17/how-to-build-a-color-customizer-app-for-a-3d-model-with-three-js/
 //https://medium.com/@akashkuttappa/using-3d-models-with-ar-js-and-a-frame-84d462efe498
