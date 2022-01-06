@@ -20,7 +20,7 @@ class App{
 		document.body.appendChild( container );
         
         this.clock = new THREE.Clock();
-     /*   
+       
 		//this.camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.01, 20 );
         this.camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.01, 20 );
 
@@ -37,47 +37,6 @@ class App{
 		this.renderer.setSize( window.innerWidth, window.innerHeight );
         this.renderer.outputEncoding = THREE.sRGBEncoding;
 		container.appendChild( this.renderer.domElement );
-        */
-
-         this.renderer = new THREE.WebGLRenderer( { antialias: true, alpha: true  } );
-         this.renderer.setClearColor( 0x000000 );
-         this.renderer.setPixelRatio( window.devicePicelRatio );
-         this.renderer.setSize( window.innerWidth, window.innerHeight );
-         this.renderer.shadowMap.enabled = true;
-         this.renderer.shadowMap.type = THREE.PCFSoftShadowMap; // default THREE.PCFShadowMap
-         this.renderer.gammaOutput = true;
-        // this.renderer.outputEncoding = THREE.sRGBEncoding;
-         this.renderer.gammaFactor = 2.2;
-//window.addEventListener( 'resize', onWindowResize, false );
-
-this.camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 3000 );
-this.camera.position.x = 800;
-this.camera.position.y = 350;
-this.camera.position.z = 500;
-
-this.scene = new THREE.Scene();
-
-
-let light1 = new THREE.SpotLight( 0xffffff, 0.8 );              //desklamp spotlight
-light1.name = 'Desk Lamp';
-light1.penumbra = 0.3;
-light1.position.set( 263, 173, 420 );
-light1.target.position.set( 300, 140, 420 );
-light1.angle = Math.PI * 3;
-light1.castShadow = true;
-light1.receiveShadow = true;
-light1.shadow.camera.near = 0.5;       // default
-light1.shadow.camera.far = 350      // default
-light1.shadow.mapSize.width = 512;  // default
-light1.shadow.mapSize.height = 512; // default
-this.scene.add( light1 );
-this.scene.add( light1.target );
-
-let helper = new THREE.CameraHelper ( light1.shadow.camera );
-this.scene.add( helper );
-
-//addLights();
-       
         
         this.controls = new OrbitControls( this.camera, this.renderer.domElement );
         this.controls.target.set(0, 3.5, 0);
@@ -97,33 +56,6 @@ this.scene.add( helper );
         window.addEventListener('resize', this.resize.bind(this) );
 	}	
 
-
-
-
-     addLights() {
-        let light1 = new THREE.SpotLight( 0xffffff, 0.8 );              //desklamp spotlight
-        light1.name = 'Desk Lamp';
-        light1.penumbra = 0.3;
-        light1.position.set( 263, 173, 420 );
-        light1.target.position.set( 300, 140, 420 );
-        light1.angle = Math.PI * 3;
-        light1.castShadow = true;
-        light1.receiveShadow = true;
-        light1.shadow.camera.near = 0.5;       // default
-        light1.shadow.camera.far = 350      // default
-        light1.shadow.mapSize.width = 512;  // default
-        light1.shadow.mapSize.height = 512; // default
-        this.scene.add( light1 );
-        this.scene.add( light1.target );
-      
-        let helper = new THREE.CameraHelper ( light1.shadow.camera );
-        this.scene.add( helper );
-      
-        // let light2 = new THREE.AmbientLight( 0xffffff, 0.1 );          used for testing light
-        // light2.position.set( 800, 200, 800 );
-      
-        // scene.add( light2 );
-      }
 
     
     initScene(id){
