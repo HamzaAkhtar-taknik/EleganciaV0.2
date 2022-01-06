@@ -205,7 +205,7 @@ class App{
     
     setupXR(id){
        this.renderer.xr.enabled = true; 
-       
+
         const self = this;
         let controller, controller1;
         
@@ -292,7 +292,7 @@ class App{
             //console.log( 'press' );    
             //ev.initialise = undefined;
            // ev = 'undefined';
-            //this.renderer.ev = 'undefined'
+            this.renderer.ev = 'undefined';
             self.ui.updateElement('info', 'press' );
         });
         this.gestures.addEventListener( 'pan', (ev)=>{
