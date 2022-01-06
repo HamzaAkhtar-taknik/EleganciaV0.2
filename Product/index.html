@@ -72,6 +72,9 @@
                 
                 </div>
                 <div class="product-image-btn"  id="product-image-3" >
+
+                </div>
+                <div class="product-image-btn"  id="product-image-4" >
                 
                     
                 
@@ -190,6 +193,15 @@
             "product-image-3"
           ).innerHTML = `<img src=".${product.image[2]}" height="100px" width ="100px"/>`;
 
+            if(product.id == 1){
+
+              document.getElementById(
+                        "product-image-4"
+                      ).innerHTML = `<img src=".${product.image[3]}" height="100px" width ="100px"/>`;
+
+
+
+            }
 
         
 
@@ -202,6 +214,10 @@
       var productImgOne = document.getElementById('product-image-1');
       var productImgTwo = document.getElementById('product-image-2');
       var productImgThree = document.getElementById('product-image-3');
+             
+      if(productId == 1){
+      var productImgFour = document.getElementById('product-image-4')}
+ 
 
 
 
@@ -212,6 +228,9 @@
         productImgOne.style.backgroundColor = 'rgba(128, 128, 128, 0.281)'
         productImgTwo.style.backgroundColor = 'white';  
         productImgThree.style.backgroundColor = 'white';  
+               
+      if(productId == 1){
+        productImgFour.style.backgroundColor = 'white'}
         updateModel(productId );
       };
 
@@ -221,6 +240,10 @@
         productImgTwo.style.backgroundColor = 'rgba(128, 128, 128, 0.281)'
         productImgOne.style.backgroundColor = 'white';  
         productImgThree.style.backgroundColor = 'white';  
+               
+      if(productId == 1){
+        productImgFour.style.backgroundColor = 'white' }
+
         updateModel(productId + '_2');
       };
 
@@ -229,8 +252,27 @@
         productImgThree.style.backgroundColor = 'rgba(128, 128, 128, 0.281)'
         productImgOne.style.backgroundColor = 'white';  
         productImgTwo.style.backgroundColor = 'white'; 
+        
+            
+      if(productId == 1){
+        productImgFour.style.backgroundColor = 'white' 
+      }
+
         updateModel(productId + '_3'); 
       };
+       
+      if(productId == 1){
+        productImgFour.onclick = function(){
+        productImgThree.style.backgroundColor = 'white'
+        productImgOne.style.backgroundColor = 'white';  
+        productImgTwo.style.backgroundColor = 'white'; 
+        productImgFour.style.backgroundColor = 'rgba(128, 128, 128, 0.281)';
+        updateModel(productId + '_3'); 
+      }
+      
+   
+
+      }
 
 
     </script>
