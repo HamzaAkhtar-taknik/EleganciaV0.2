@@ -26,41 +26,43 @@ class App{
 
 		this.scene = new THREE.Scene(); 
         this.scene.add(this.camera);
-		// this.scene.add( new THREE.HemisphereLight( 0x606060, 0x404040 ) );
+		this.scene.add( new THREE.HemisphereLight( 0x606060, 0x404040 ) );
 
         // const light = new THREE.DirectionalLight( 0xffffff );
         // light.position.set( 1, 1, 1 ).normalize(); // default; light shining from top
 		// this.scene.add( light );
 
 
-        var ambientLight = new THREE.AmbientLight( 0xffffff, 0.4 );
-        this.scene.add( ambientLight );
-    
-        var spotLight = new THREE.SpotLight( 0xffffff, 1 );
-        spotLight.position.set( 500, 400, 200 );
-        spotLight.angle = 0.4;
-        spotLight.penumbra = 0.05;
-        spotLight.decay = 1;
-        spotLight.distance = 2000;
-    
-        spotLight.castShadow = true;
-        this.scene.add( spotLight );
-    
-        spotLight.target.position.set( 3, 0, - 3 );
-        this.scene.add( spotLight.target );
 
-		// this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true } );
-		// this.renderer.setPixelRatio( window.devicePixelRatio );
-		// this.renderer.setSize( window.innerWidth, window.innerHeight );
-        // this.renderer.outputEncoding = THREE.sRGBEncoding;
 
-        this.renderer = new THREE.WebGLRenderer( { antialias: true , alpha: true } );
-        this.renderer.setPixelRatio( window.devicePixelRatio );
-        this.renderer.setSize( window.innerWidth, window.innerHeight );
-        //this.renderer.gammaOutput = true;
-        this.renderer.gammaFactor = 2.2;
-        this.renderer.shadowMap.enabled = true;
+        const dirLight = new THREE.DirectionalLight(0xffffff, 1);
+        dirLight.position.set(0, 70, 100);
+        let d = 1000;
+        let r = 2;
+        let mapSize = 8192;
+        dirLight.castShadow = true;
+        dirLight.shadow.radius = r;
+        dirLight.shadow.mapSize.width = mapSize;
+        dirLight.shadow.mapSize.height = mapSize;
+        dirLight.shadow.camera.top = dirLight.shadow.camera.right = d;
+        dirLight.shadow.camera.bottom = dirLight.shadow.camera.left = -d;
+        dirLight.shadow.camera.near = 1;
+        dirLight.shadow.camera.far = 400000000;
+        //dirLight.shadow.camera.visible = true;
+    
+        this.scene.add(dirLight);
+        this.scene.add(new THREE.DirectionalLightHelper(dirLight, 10));
+    
+
+
+
+		this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true } );
+		this.renderer.setPixelRatio( window.devicePixelRatio );
+		this.renderer.setSize( window.innerWidth, window.innerHeight );
         this.renderer.outputEncoding = THREE.sRGBEncoding;
+
+        this.renderer.shadowMap.enabled = true;
+
 		container.appendChild( this.renderer.domElement );
         
         this.controls = new OrbitControls( this.camera, this.renderer.domElement );
@@ -71,36 +73,6 @@ class App{
         this.stats = new Stats();
         document.body.appendChild( this.stats.dom );
         
-
-
-
-    
-   
-    
-        var lightHelper = new THREE.SpotLightHelper( spotLight );
-        // scene.add( lightHelper );
-    
-     
-    
-
-    
-       // window.addEventListener( 'resize', onWindowResize, false );
-
-
-       // requestAnimationFrame( animate );
-
-        this.renderer.render( this.scene, this.camera );
-    
-        this.stats.update();
-
-
-
-
-
-
-
-
-      
         this.origin = new THREE.Vector3();
         this.euler = new THREE.Euler();
         this.quaternion = new THREE.Quaternion();
@@ -112,9 +84,6 @@ class App{
 	}	
 
 
-
-    
-  
     
     initScene(id){
         this.loadingBar = new LoadingBar();
@@ -126,6 +95,9 @@ class App{
 		// Load a GLTF resource
 		loader.load(
 			// resource URL
+			//`knight2.glb`,
+            //`office-chair.glb`,
+            //`chair1.glb`,
             `${id}.glb`,
 			// called when the resource is loaded
 			function ( gltf ) {
@@ -136,36 +108,21 @@ class App{
 
                 const object=gltf.scene.children[length-1];
 
-                // object.traverse(function(child){
-				// 	if (child.isMesh){
-                //         child.material.metalness = 0;
-                //         child.material.roughness = 1;
-                //         child.castShadow = true;
-                //         child.receiveShadow = true;
-
-				// 	} 
-                   
-				// });
-				
-
-                gltf.scene.traverse( function ( child ) {
-
-                    if ( child.isMesh ) {
-                        // child.material.metalness = 0;
-                        // child.material.roughness = 1;
+                object.traverse(function(child){
+					if (child.isMesh){
+                        child.material.metalness = 0;
+                        child.material.roughness = 1;
                         child.castShadow = true;
                         child.receiveShadow = true;
-        
-                    }
-        
-                } );
-        
 
-                
-        
-               
+					} 
+                   
+				});
+				
+ 
                 
 
+        
 				const options = {
 					object: object,
 					speed: 2,
