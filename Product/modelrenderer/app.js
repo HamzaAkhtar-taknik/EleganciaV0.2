@@ -57,10 +57,10 @@ class App{
         this.renderer = new THREE.WebGLRenderer( { antialias: true , alpha: true } );
         this.renderer.setPixelRatio( window.devicePixelRatio );
         this.renderer.setSize( window.innerWidth, window.innerHeight );
-        this.renderer.gammaOutput = true;
+        //this.renderer.gammaOutput = true;
         this.renderer.gammaFactor = 2.2;
         this.renderer.shadowMap.enabled = true;
-
+        this.renderer.outputEncoding = THREE.sRGBEncoding;
 		container.appendChild( this.renderer.domElement );
         
         this.controls = new OrbitControls( this.camera, this.renderer.domElement );
@@ -151,14 +151,17 @@ class App{
                 gltf.scene.traverse( function ( child ) {
 
                     if ( child.isMesh ) {
-                        child.material.metalness = 0;
-                        child.material.roughness = 1;
+                        // child.material.metalness = 0;
+                        // child.material.roughness = 1;
                         child.castShadow = true;
                         child.receiveShadow = true;
         
                     }
         
                 } );
+        
+
+                
         
                
                 
