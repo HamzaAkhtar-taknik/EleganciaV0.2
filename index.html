@@ -40,13 +40,13 @@
           <div class="collapse navbar-collapse " id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                <a class="nav-link active" aria-current="page" href="#Home">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">About</a>
+                <a class="nav-link" href="#About">About</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Product</a>
+                <a class="nav-link" href="#Product">Product</a>
               </li>
             
             </ul>
@@ -56,24 +56,26 @@
     </nav>
 
 
-    <div>
+
+
+
+    <div id="Home"> 
         <div class="row">
-          <div class="col col col-lg-8" >
+          <div class="col-lg-8 col-sm-12" >
             <img src="./assets/banner.png" alt="banner_img" height="80%" width="100%">
           </div>
-          <div class="col col col-lg-4" >
-            <!-- class="col col col-lg-4"  <img src="./assets/3DModel.png" alt="banner_img" height="60%" width="80%">  margin-top: -9px;-->
+          <div class="col-lg-4 col-sm-12" style="height: 500px;">    
             <model-viewer style="width: 100%;
             height: 100%;" camera-controls alt="Model" src="./assets/chair1.glb" >
             </model-viewer>
           </div>
         </div>
 <!-- About Section -->
-          <div  class="row about-section">
-            <div class="col col col-lg-12 section-heading">
-              <span>About Elegancia</span>
-            </div>
-     
+     <div id="About" class="row about-section">
+                <div class="col col-lg-12 section-heading">
+                  <span>About Elegancia</span>
+                </div>
+        
        
             <div class="col-lg-8">
               <p class="section-text">
@@ -89,22 +91,18 @@
 
             <div  class="col col col-lg-4">
               
-                <div class="container" >
-                  <model-viewer camera-controls alt="Model" src="./assets/chair3.glb"  height="100%" width="100%" >
+                <div class="container" style="display:flex; justify-content:center" >
+                  <model-viewer style="height: 500px; width: 100%;" camera-controls alt="Model" src="./assets/chair3.glb"  height="100%" width="100%" >
                   </model-viewer>
                 </div>
               
             </div>
 
-            </div>
-
-              
-
-
-          </div>
+     </div>
+     </div>
 
 <!-- Product Section -->
-          <div  class="row products-section">
+          <div id="Product" class="row products-section">
             <div class="col col col-lg-12 section-heading">
               <span id="text">Our Product</span>
             </div>

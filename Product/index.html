@@ -32,7 +32,7 @@
       });
     </script>
     
-    <div class="row main-page" style="display: flex; width: 80%; margin : auto">
+    <div class="row main-page" style="display: flex; width: 90%; margin : auto ; ">
         <div class="row">
       <h1
       id="product-name">
@@ -40,13 +40,11 @@
     </h1>
         </div>
  
-      <div class="row col-lg-6 col-sm-12">
-          <div 
-          style="position: relative;"
-          > 
+      <div class="row col-lg-6 col-sm-12" >
+          <div  style="position: relative;" > 
             <div
-              style="height: 100%; position: relative;"
-              class="col col col-lg-12"
+              style="position: relative; display: flex; align-items: center; justify-content: center;"
+              class="col col-lg-12"
               id="product-large-image"
             >
             
@@ -64,7 +62,7 @@
 
 
 
-        <div  style="display:flex; justify-content: center;;" class="col col col-lg-12" >
+        <div  style="display:flex; justify-content: center;" class="col col col-lg-12" >
           <div class="product-image-list">
 
                 <div class="product-image-btn" id="product-image-1" >
@@ -85,7 +83,7 @@
 
                                 document.getElementById(
                                         "product-large-image"
-                                         ).innerHTML = ` <model-viewer class="responsive"
+                                         ).innerHTML = ` <model-viewer 
                                          camera-controls alt="Model" src= "./../assets/${modelId}.glb" height="100%" width="100%" >
                                         </model-viewer/> `;
                             }
@@ -113,10 +111,12 @@
           <h1>Details:</h1>
           <p id="product-details"></p>
         </div>
-
-        <div id="view-in-your-space" onclick="onClickfun();">
-          View in your space
-        </div>
+<div style="display: flex; align-items: center; justify-content: center; margin-top: 1rem;">
+  <div id="view-in-your-space" onclick="onClickfun();">
+    View in your space
+  </div>
+</div>
+        
 
         <script>
           function onClickfun() {
@@ -155,7 +155,7 @@
           console.log(path);
           document.getElementById(
             "product-large-image"
-          ).innerHTML = ` <model-viewer class="responsive"
+          ).innerHTML = ` <model-viewer style="height:500px; width:100%"
                     camera-controls alt="Model" src= "./../assets/${productId}.glb" height="100%" width="100%" >
                 </model-viewer/> `;
 

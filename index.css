@@ -1,13 +1,12 @@
 .navbar-brand {
     font-family: Be Vietnam Pro;
-    font-size: 6rem !important;
+    font-size: calc(4rem + 2vw) !important;
     color: #4A4A4A;
-
-    
+   
 }
 
 .nav-link{
-    font-size: 2rem !important;
+    font-size: calc(1rem + 0.5vw) !important;
     margin-right: 1.5rem !important;
 }
 
@@ -15,7 +14,7 @@
     justify-content: end !important;
 }
 .section-heading{
-    font-size: 4rem !important;
+    font-size: calc(2rem + 2vw )!important;
     color: #4A4A4A;
     font-family: Be Vietnam Pro;
     text-align: center;
@@ -25,16 +24,18 @@
 .about-section{
    padding-left: 10% !important;
    padding-right: 10% !important;
+   text-align: justify;
 }
 
 .section-text{
-    font-size: 2rem;
+    font-size: calc(1rem + 0.5vw )!important;
+    margin-top: 1.5rem;
+
 }
 
 .product-single{
-display: flex;
-flex-direction: column;
-justify-content: space-between;
+display:grid;
+grid-template-rows: 80% 20%;
 border: 1px solid black;
 margin:1rem !important;
 width: 33%;
@@ -43,13 +44,14 @@ height: 550px;
 
 
 #products{
+    display:flex;
+    flex-wrap: wrap ;
     align-items: center;
     justify-content: center;
 }
 
 .responsive{
     width: 100%;
-    height: 100%;
 }
 
 
@@ -60,22 +62,28 @@ height: 550px;
     justify-content: flex-end;
 }
 
+
+.product-single-image{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
 .product-image-list{
-border: 1px solid black;
+ border: 1px solid black;
  display: flex;
  justify-content: center !important;
  align-items: center !important;
  height: fit-content;
- /* width: 60% ; */
+
 }
-a:active{
-    background-color: red;
-}
+
 
 #view-in-your-space{
     border: 1px solid #000000;
     border-radius: 14px;
-    width: 25%;
+    width: 80%;
     padding:10px;
     text-align: center;
     font-weight: bold;
