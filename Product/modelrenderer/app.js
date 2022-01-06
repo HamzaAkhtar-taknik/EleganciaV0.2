@@ -300,8 +300,8 @@ class App{
         this.gestures.addEventListener( 'press', (ev)=>{
             //console.log( 'press' );    
             //ev.initialise = undefined;
-            ev = 'undefined';
-            this.renderer.ev = 'undefined'
+           // ev = 'undefined';
+            //this.renderer.ev = 'undefined'
             self.ui.updateElement('info', 'press' );
         });
         this.gestures.addEventListener( 'pan', (ev)=>{
