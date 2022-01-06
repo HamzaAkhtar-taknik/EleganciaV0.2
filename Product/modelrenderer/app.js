@@ -22,7 +22,7 @@ class App{
         this.clock = new THREE.Clock();
        
 		//this.camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.01, 20 );
-        this.camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.01, 20 );
+      /*  this.camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.01, 20 );
 
 		this.scene = new THREE.Scene(); 
         this.scene.add(this.camera);
@@ -45,7 +45,13 @@ class App{
         
         this.stats = new Stats();
         document.body.appendChild( this.stats.dom );
-        
+        */
+
+
+
+init();
+animate();
+      
         this.origin = new THREE.Vector3();
         this.euler = new THREE.Euler();
         this.quaternion = new THREE.Quaternion();
@@ -57,6 +63,62 @@ class App{
 	}	
 
 
+     init() {
+    
+        this.scene = new THREE.Scene();
+    
+        this.camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.25, 20 );
+        this.camera.position.set( - 1.8, 0.9, 2.7 );
+    
+        this.controls = new THREE.OrbitControls( camera );
+    
+        var ambientLight = new THREE.AmbientLight( 0xffffff, 0.4 );
+        this.scene.add( ambientLight );
+    
+        var spotLight = new THREE.SpotLight( 0xffffff, 1 );
+        spotLight.position.set( 500, 400, 200 );
+        spotLight.angle = 0.4;
+        spotLight.penumbra = 0.05;
+        spotLight.decay = 1;
+        spotLight.distance = 2000;
+    
+        spotLight.castShadow = true;
+        this.scene.add( spotLight );
+    
+        spotLight.target.position.set( 3, 0, - 3 );
+        this.scene.add( spotLight.target );
+    
+        var lightHelper = new THREE.SpotLightHelper( spotLight );
+        // scene.add( lightHelper );
+    
+     
+    
+        this.renderer = new THREE.WebGLRenderer( { antialias: true } );
+        this.renderer.setPixelRatio( window.devicePixelRatio );
+        this.renderer.setSize( window.innerWidth, window.innerHeight );
+        this.renderer.gammaOutput = true;
+        this.renderer.gammaFactor = 2.2;
+        this.renderer.shadowMap.enabled = true;
+        container.appendChild( this.renderer.domElement );
+    
+       // window.addEventListener( 'resize', onWindowResize, false );
+    
+        // stats
+        this.stats = new Stats();
+        container.appendChild(this.stats.dom );
+    
+    }
+
+    
+  animate() {
+
+    requestAnimationFrame( animate );
+
+    this.renderer.render( this.scene, this.camera );
+
+    this.stats.update();
+
+}
     
     initScene(id){
         this.loadingBar = new LoadingBar();
@@ -68,9 +130,6 @@ class App{
 		// Load a GLTF resource
 		loader.load(
 			// resource URL
-			//`knight2.glb`,
-            //`office-chair.glb`,
-            //`chair1.glb`,
             `${id}.glb`,
 			// called when the resource is loaded
 			function ( gltf ) {
@@ -81,29 +140,57 @@ class App{
 
                 const object=gltf.scene.children[length-1];
 
-                //if(gltf.scene.children[8].)
-
-				// object.traverse(function(child){
+                // object.traverse(function(child){
 				// 	if (child.isMesh){
                 //         child.material.metalness = 0;
                 //         child.material.roughness = 1;
-				// 	}
+                //         child.castShadow = true;
+                //         child.receiveShadow = true;
+
+				// 	} 
+                   
 				// });
-                object.traverse(function(child){
-					if (child.isMesh){
+				
+
+                gltf.scene.traverse( function ( child ) {
+
+                    if ( child.isMesh ) {
                         child.material.metalness = 0;
                         child.material.roughness = 1;
                         child.castShadow = true;
                         child.receiveShadow = true;
-                        //console.log('Mesh child');
-
-					} 
-                    // else if(child=='Object3D'){
-                    //         object = child;
-                    //         console.log('3d object');
-                    // }
-				});
-				
+        
+                    }
+        
+                } );
+        
+                // automatically center model and adjust camera
+        
+                const box = new THREE.Box3().setFromObject( gltf.scene );
+                const size = box.getSize( new THREE.Vector3() ).length();
+                const center = box.getCenter( new THREE.Vector3() );
+        
+                gltf.scene.position.x += ( gltf.scene.position.x - center.x );
+                gltf.scene.position.y += ( gltf.scene.position.y - center.y );
+                gltf.scene.position.z += ( gltf.scene.position.z - center.z );
+        
+                this.camera.near = size / 100;
+                this.camera.far = size * 100;
+        
+                this.camera.updateProjectionMatrix();
+        
+                this.camera.position.copy( center );
+                this.camera.position.x += size / 2.0;
+                this.camera.position.y += size / 5.0;
+                this.camera.position.z += size / 2.0;
+                this.camera.lookAt( center );
+        
+                console.log( camera.position );
+        
+                this.controls.maxDistance = size * 10;
+                this.controls.update();
+        
+               // scene.add( gltf.scene );
                 
 
 				const options = {
