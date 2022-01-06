@@ -223,6 +223,8 @@ class App{
         this.gestures = new ControllerGestures( this.renderer );
         this.gestures.addEventListener( 'tap', (ev)=>{
             console.log( 'tap' ); 
+            this.renderer.ev = 'undefined';
+            
             self.ui.updateElement('info', 'tap' );
             if (!self.knight.object.visible){
                 self.knight.object.visible = true;
