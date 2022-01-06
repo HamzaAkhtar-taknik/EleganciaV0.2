@@ -22,56 +22,17 @@ class App{
         this.clock = new THREE.Clock();
        
 		//this.camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.01, 20 );
-      /*  this.camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.01, 20 );
+        this.camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.01, 20 );
 
 		this.scene = new THREE.Scene(); 
         this.scene.add(this.camera);
-		this.scene.add( new THREE.HemisphereLight( 0x606060, 0x404040 ) );
+		// this.scene.add( new THREE.HemisphereLight( 0x606060, 0x404040 ) );
 
-        const light = new THREE.DirectionalLight( 0xffffff );
-        light.position.set( 1, 1, 1 ).normalize(); // default; light shining from top
-		this.scene.add( light );
-
-		this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true } );
-		this.renderer.setPixelRatio( window.devicePixelRatio );
-		this.renderer.setSize( window.innerWidth, window.innerHeight );
-        this.renderer.outputEncoding = THREE.sRGBEncoding;
-		container.appendChild( this.renderer.domElement );
-        
-        this.controls = new OrbitControls( this.camera, this.renderer.domElement );
-        this.controls.target.set(0, 3.5, 0);
-
-        this.controls.update();
-        
-        this.stats = new Stats();
-        document.body.appendChild( this.stats.dom );
-        */
+        // const light = new THREE.DirectionalLight( 0xffffff );
+        // light.position.set( 1, 1, 1 ).normalize(); // default; light shining from top
+		// this.scene.add( light );
 
 
-
-init();
-animate();
-      
-        this.origin = new THREE.Vector3();
-        this.euler = new THREE.Euler();
-        this.quaternion = new THREE.Quaternion();
-        
-        this.initScene(id);
-        this.setupXR(id);
-        
-        window.addEventListener('resize', this.resize.bind(this) );
-	}	
-
-
-     init() {
-    
-        this.scene = new THREE.Scene();
-    
-        this.camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.25, 20 );
-        this.camera.position.set( - 1.8, 0.9, 2.7 );
-    
-        this.controls = new THREE.OrbitControls( camera );
-    
         var ambientLight = new THREE.AmbientLight( 0xffffff, 0.4 );
         this.scene.add( ambientLight );
     
@@ -87,38 +48,73 @@ animate();
     
         spotLight.target.position.set( 3, 0, - 3 );
         this.scene.add( spotLight.target );
+
+		// this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true } );
+		// this.renderer.setPixelRatio( window.devicePixelRatio );
+		// this.renderer.setSize( window.innerWidth, window.innerHeight );
+        // this.renderer.outputEncoding = THREE.sRGBEncoding;
+
+        this.renderer = new THREE.WebGLRenderer( { antialias: true , alpha: true } );
+        this.renderer.setPixelRatio( window.devicePixelRatio );
+        this.renderer.setSize( window.innerWidth, window.innerHeight );
+        this.renderer.gammaOutput = true;
+        this.renderer.gammaFactor = 2.2;
+        this.renderer.shadowMap.enabled = true;
+
+		container.appendChild( this.renderer.domElement );
+        
+        this.controls = new OrbitControls( this.camera, this.renderer.domElement );
+        this.controls.target.set(0, 3.5, 0);
+
+        this.controls.update();
+        
+        this.stats = new Stats();
+        document.body.appendChild( this.stats.dom );
+        
+
+
+
+    
+   
     
         var lightHelper = new THREE.SpotLightHelper( spotLight );
         // scene.add( lightHelper );
     
      
     
-        this.renderer = new THREE.WebGLRenderer( { antialias: true } );
-        this.renderer.setPixelRatio( window.devicePixelRatio );
-        this.renderer.setSize( window.innerWidth, window.innerHeight );
-        this.renderer.gammaOutput = true;
-        this.renderer.gammaFactor = 2.2;
-        this.renderer.shadowMap.enabled = true;
-        container.appendChild( this.renderer.domElement );
+
     
        // window.addEventListener( 'resize', onWindowResize, false );
+
+
+       // requestAnimationFrame( animate );
+
+        this.renderer.render( this.scene, this.camera );
     
-        // stats
-        this.stats = new Stats();
-        container.appendChild(this.stats.dom );
-    
-    }
+        this.stats.update();
+
+
+
+
+
+
+
+
+      
+        this.origin = new THREE.Vector3();
+        this.euler = new THREE.Euler();
+        this.quaternion = new THREE.Quaternion();
+        
+        this.initScene(id);
+        this.setupXR(id);
+        
+        window.addEventListener('resize', this.resize.bind(this) );
+	}	
+
+
 
     
-  animate() {
-
-    requestAnimationFrame( animate );
-
-    this.renderer.render( this.scene, this.camera );
-
-    this.stats.update();
-
-}
+  
     
     initScene(id){
         this.loadingBar = new LoadingBar();
@@ -164,33 +160,7 @@ animate();
         
                 } );
         
-                // automatically center model and adjust camera
-        
-                const box = new THREE.Box3().setFromObject( gltf.scene );
-                const size = box.getSize( new THREE.Vector3() ).length();
-                const center = box.getCenter( new THREE.Vector3() );
-        
-                gltf.scene.position.x += ( gltf.scene.position.x - center.x );
-                gltf.scene.position.y += ( gltf.scene.position.y - center.y );
-                gltf.scene.position.z += ( gltf.scene.position.z - center.z );
-        
-                this.camera.near = size / 100;
-                this.camera.far = size * 100;
-        
-                this.camera.updateProjectionMatrix();
-        
-                this.camera.position.copy( center );
-                this.camera.position.x += size / 2.0;
-                this.camera.position.y += size / 5.0;
-                this.camera.position.z += size / 2.0;
-                this.camera.lookAt( center );
-        
-                console.log( camera.position );
-        
-                this.controls.maxDistance = size * 10;
-                this.controls.update();
-        
-               // scene.add( gltf.scene );
+               
                 
 
 				const options = {
