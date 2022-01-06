@@ -298,38 +298,31 @@ class App{
         this.gestures.addEventListener( 'pan', (ev)=>{
             //console.log( ev );
             
-            // if (ev.initialise !== undefined){
-            //     self.startPosition = self.knight.object.position.clone();
-            // }else{
-            //     const pos = self.startPosition.clone().add( ev.delta.multiplyScalar(3) );
-            //     self.knight.object.position.copy( pos );
-            //     self.ui.updateElement('info', `pan x:${ev.delta.x.toFixed(3)}, y:${ev.delta.y.toFixed(3)}, z:${ev.delta.z.toFixed(3)}` );
-            // } 
+            if (ev.initialise !== undefined){
+                self.startPosition = self.knight.object.position.clone();
+            }else{
+                const pos = self.startPosition.clone().add( ev.delta.multiplyScalar(3) );
+                self.knight.object.position.copy( pos );
+                self.ui.updateElement('info', `pan x:${ev.delta.x.toFixed(3)}, y:${ev.delta.y.toFixed(3)}, z:${ev.delta.z.toFixed(3)}` );
+            } 
         });
         this.gestures.addEventListener( 'swipe', (ev)=>{
             //console.log( ev );   
-            // self.ui.updateElement('info', `swipe ${ev.direction}` );
-            // if (self.knight.object.visible){
-            //     self.knight.object.visible = false;
-            //     self.scene.remove( self.knight.object ); 
-            // }
+            self.ui.updateElement('info', `swipe ${ev.direction}` );
+            if (self.knight.object.visible){
+                self.knight.object.visible = false;
+                self.scene.remove( self.knight.object ); 
+            }
+        });
+        this.gestures.addEventListener( 'pinch', (ev)=>{
+            //console.log( ev ); 
             if (ev.initialise !== undefined){
                 self.startScale = self.knight.object.scale.clone();
             }else{
                 const scale = self.startScale.clone().multiplyScalar(ev.scale);
                 self.knight.object.scale.copy( scale );
-                self.ui.updateElement('info', `swipe delta:${ev.delta.toFixed(3)} scale:${ev.scale.toFixed(2)}` );
+                self.ui.updateElement('info', `pinch delta:${ev.delta.toFixed(3)} scale:${ev.scale.toFixed(2)}` );
             }
-        });
-        this.gestures.addEventListener( 'pinch', (ev)=>{
-            //console.log( ev ); 
-            // if (ev.initialise !== undefined){
-            //     self.startScale = self.knight.object.scale.clone();
-            // }else{
-            //     const scale = self.startScale.clone().multiplyScalar(ev.scale);
-            //     self.knight.object.scale.copy( scale );
-            //     self.ui.updateElement('info', `pinch delta:${ev.delta.toFixed(3)} scale:${ev.scale.toFixed(2)}` );
-            // }
         });
         this.gestures.addEventListener( 'rotate', (ev)=>{
             //      sconsole.log( ev ); 
