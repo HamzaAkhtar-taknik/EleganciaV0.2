@@ -34,7 +34,7 @@ class App{
 		this.scene.add( new THREE.HemisphereLight( 0x606060, 0x404040 ) );
 
         const light = new THREE.DirectionalLight( 0xffffff );
-        light.position.set( 0, 9, 6 ).normalize(); //1,1,1 default; light shining from top
+        light.position.set( 0, 5, 5 ).normalize(); //1,1,1 default; light shining from top
         light.castShadow = true;
 		this.scene.add( light );
 
