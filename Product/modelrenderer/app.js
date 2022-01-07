@@ -313,7 +313,7 @@ class App{
         // });
         this.gestures.addEventListener( 'pan', (ev)=>{
             //console.log( ev );
-            self.knight.object.speed = 9;
+            self.knight.object.speed = 30;
             if (ev.initialise !== undefined){
                 self.startPosition = self.knight.object.position.clone();
             }else{
