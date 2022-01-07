@@ -24,6 +24,10 @@ class App{
 		//this.camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.01, 20 );
         this.camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.01, 20 );
 
+        this.camera.position.x = 800;
+        this.camera.position.y = 350;
+        this.camera.position.z = 500;
+
 		this.scene = new THREE.Scene(); 
         this.scene.add(this.camera);
 		this.scene.add( new THREE.HemisphereLight( 0x606060, 0x404040 ) );
@@ -34,24 +38,25 @@ class App{
 
 
 
+        let light1 = new THREE.SpotLight( 0xffffff, 0.8 );              //desklamp spotlight
+  light1.name = 'Desk Lamp';
+  light1.penumbra = 0.3;
+  light1.position.set( 263, 173, 420 );
+  light1.target.position.set( 300, 140, 420 );
+  light1.angle = Math.PI * 3;
+  light1.castShadow = true;
+  light1.receiveShadow = true;
+  light1.shadow.camera.near = 0.5;       // default
+  light1.shadow.camera.far = 350      // default
+  light1.shadow.mapSize.width = 512;  // default
+  light1.shadow.mapSize.height = 512; // default
+  this.scene.add( light1 );
+  this.scene.add( light1.target );
 
-        const dirLight = new THREE.DirectionalLight(0xffffff, 1);
-        dirLight.position.set(0, 70, 100);
-        let d = 1000;
-        let r = 2;
-        let mapSize = 8192;
-        dirLight.castShadow = true;
-        dirLight.shadow.radius = r;
-        dirLight.shadow.mapSize.width = mapSize;
-        dirLight.shadow.mapSize.height = mapSize;
-        dirLight.shadow.camera.top = dirLight.shadow.camera.right = d;
-        dirLight.shadow.camera.bottom = dirLight.shadow.camera.left = -d;
-        dirLight.shadow.camera.near = 1;
-        dirLight.shadow.camera.far = 400000000;
-        //dirLight.shadow.camera.visible = true;
-    
-        this.scene.add(dirLight);
-        this.scene.add(new THREE.DirectionalLightHelper(dirLight, 10));
+  let helper = new THREE.CameraHelper ( light1.shadow.camera );
+  this.scene.add( helper );
+
+
     
 
 
@@ -61,7 +66,14 @@ class App{
 		this.renderer.setSize( window.innerWidth, window.innerHeight );
         this.renderer.outputEncoding = THREE.sRGBEncoding;
 
+        this.renderer.setClearColor( 0x000000 );
+        this.renderer.setPixelRatio( window.devicePixelRatio );
+        this.renderer.setSize( window.innerWidth, window.innerHeight );
         this.renderer.shadowMap.enabled = true;
+        this.renderer.shadowMap.type = THREE.PCFSoftShadowMap; // default THREE.PCFShadowMap
+        this.renderer.gammaOutput = true;
+        this.renderer.gammaFactor = 2.2;
+
 
 		container.appendChild( this.renderer.domElement );
         
@@ -108,7 +120,7 @@ class App{
 
                 const object=gltf.scene.children[length-1];
 
-                object.traverse(function(child){
+                gltf.scene.traverse(function(child){
 					if (child.isMesh){
                         child.material.metalness = 0;
                         child.material.roughness = 1;
@@ -116,7 +128,6 @@ class App{
                         child.receiveShadow = true;
 
 					} 
-                   
 				});
 				
  
