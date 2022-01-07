@@ -14,6 +14,8 @@ import { ControllerGestures } from './../../libs/three125/ControllerGestures.js'
 //https://tympanus.net/codrops/2019/09/17/how-to-build-a-color-customizer-app-for-a-3d-model-with-three-js/
 //https://medium.com/@akashkuttappa/using-3d-models-with-ar-js-and-a-frame-84d462efe498
 //https://stackoverflow.com/questions/69185593/issues-displaying-glb-model-on-html
+
+//https://discourse.threejs.org/t/model-not-casting-receiving-shadows/6146
 class App{    
 	constructor(id){
 		const container = document.createElement( 'div' );
@@ -24,40 +26,17 @@ class App{
 		//this.camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.01, 20 );
         this.camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.01, 20 );
 
-        this.camera.position.x = 800;
-        this.camera.position.y = 350;
-        this.camera.position.z = 500;
+        this.camera.position.set( - 1.8, 0.9, 2.7 );
+
 
 		this.scene = new THREE.Scene(); 
         this.scene.add(this.camera);
 		this.scene.add( new THREE.HemisphereLight( 0x606060, 0x404040 ) );
 
-        // const light = new THREE.DirectionalLight( 0xffffff );
-        // light.position.set( 1, 1, 1 ).normalize(); // default; light shining from top
-		// this.scene.add( light );
-
-
-
-        let light1 = new THREE.SpotLight( 0xffffff, 0.8 );              //desklamp spotlight
-  light1.name = 'Desk Lamp';
-  light1.penumbra = 0.3;
-  light1.position.set( 263, 173, 420 );
-  light1.target.position.set( 300, 140, 420 );
-  light1.angle = Math.PI * 3;
-  light1.castShadow = true;
-  light1.receiveShadow = true;
-  light1.shadow.camera.near = 0.5;       // default
-  light1.shadow.camera.far = 350      // default
-  light1.shadow.mapSize.width = 512;  // default
-  light1.shadow.mapSize.height = 512; // default
-  this.scene.add( light1 );
-  this.scene.add( light1.target );
-
-  let helper = new THREE.CameraHelper ( light1.shadow.camera );
-  this.scene.add( helper );
-
-
-    
+        const light = new THREE.DirectionalLight( 0xffffff );
+        light.position.set( 1, 1, 1 ).normalize(); // default; light shining from top
+        light.castShadow = true;
+		this.scene.add( light );
 
 
 
@@ -67,12 +46,11 @@ class App{
         this.renderer.outputEncoding = THREE.sRGBEncoding;
 
         //this.renderer.setClearColor( 0x000000 );
-        this.renderer.setPixelRatio( window.devicePixelRatio );
-        this.renderer.setSize( window.innerWidth, window.innerHeight );
         this.renderer.shadowMap.enabled = true;
         this.renderer.shadowMap.type = THREE.PCFSoftShadowMap; // default THREE.PCFShadowMap
-        this.renderer.gammaOutput = true;
-        this.renderer.gammaFactor = 2.2;
+        // this.renderer.gammaOutput = true;
+        // this.renderer.gammaFactor = 2.2;
+
 
 
 		container.appendChild( this.renderer.domElement );
@@ -131,6 +109,15 @@ class App{
 				});
 				
  
+                //  this.shadowPlane = new THREE.Mesh(
+                //     new THREE.PlaneBufferGeometry(),
+                //     new THREE.ShadowMaterial()
+                // );
+                // shadowPlane.rotateX(-1 * Math.PI / 2); // Rotate the plane to be flat on the ground
+                // shadowPlane.material.opacity = 0.3; // Make the plane semi-transparent so some of the ground is visible under the shadow
+                // shadowPlane.receiveShadow = true;
+                // trackerGroup.add(shadowPlane);
+                
                 
 
         
