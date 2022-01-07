@@ -44,9 +44,8 @@ var products = [
        clean-lined mid-century modern designs. Its seat is upholstered in durable,
         family-friendly fabric, making this a perfect piece for parties or family dinners alike.`,
     dimensions:
-      `"Overall: 29.9""w x 29.75""d x 30.9""h` +
-      "\r\n" +
-      `Seat: 
+      `Overall: 29.9""w x 29.75""d x 30.9""h
+      Seat: 
       Width: 21.6""  Depth: 22.75""  Height: 17.1"".
       Arm height: 22"".
       Diagonal depth: 27.4"".
