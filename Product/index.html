@@ -32,7 +32,7 @@
       });
     </script>
     
-    <div class="row main-page" style="display: flex; width: 80%; margin : auto">
+    <div class="row main-page" style="display: flex; width: 90%; margin : auto ; ">
         <div class="row">
       <h1
       id="product-name">
@@ -40,13 +40,11 @@
     </h1>
         </div>
  
-      <div class="row col-lg-6 col-sm-12">
-          <div 
-          style="position: relative;"
-          > 
+      <div class="row col-lg-6 col-sm-12" >
+          <div  style="position: relative;" > 
             <div
-              style="height: 100%; position: relative;"
-              class="col col col-lg-12"
+              style="position: relative; display: flex; align-items: center; justify-content: center;"
+              class="col col-lg-12"
               id="product-large-image"
             >
             
@@ -64,7 +62,7 @@
 
 
 
-        <div  style="display:flex; justify-content: center;;" class="col col col-lg-12" >
+        <div  style="display:flex; justify-content: center;" class="col col col-lg-12" >
           <div class="product-image-list">
 
                 <div class="product-image-btn" id="product-image-1" >
@@ -74,6 +72,9 @@
                 
                 </div>
                 <div class="product-image-btn"  id="product-image-3" >
+
+                </div>
+                <div class="product-image-btn"  id="product-image-4" >
                 
                     
                 
@@ -85,7 +86,7 @@
 
                                 document.getElementById(
                                         "product-large-image"
-                                         ).innerHTML = ` <model-viewer class="responsive"
+                                         ).innerHTML = ` <model-viewer 
                                          camera-controls alt="Model" src= "./../assets/${modelId}.glb" height="100%" width="100%" >
                                         </model-viewer/> `;
                             }
@@ -113,10 +114,12 @@
           <h1>Details:</h1>
           <p id="product-details"></p>
         </div>
-
-        <div id="view-in-your-space" onclick="onClickfun();">
-          View in your space
-        </div>
+<div style="display: flex; align-items: center; justify-content: center; margin-top: 1rem;">
+  <div id="view-in-your-space" onclick="onClickfun();">
+    View in your space
+  </div>
+</div>
+        
 
         <script>
           function onClickfun() {
@@ -155,7 +158,7 @@
           console.log(path);
           document.getElementById(
             "product-large-image"
-          ).innerHTML = ` <model-viewer class="responsive"
+          ).innerHTML = ` <model-viewer style="height:500px; width:100%"
                     camera-controls alt="Model" src= "./../assets/${productId}.glb" height="100%" width="100%" >
                 </model-viewer/> `;
 
@@ -190,6 +193,15 @@
             "product-image-3"
           ).innerHTML = `<img src=".${product.image[2]}" height="100px" width ="100px"/>`;
 
+            if(product.id == 1){
+
+              document.getElementById(
+                        "product-image-4"
+                      ).innerHTML = `<img src=".${product.image[3]}" height="100px" width ="100px"/>`;
+
+
+
+            }
 
         
 
@@ -202,6 +214,10 @@
       var productImgOne = document.getElementById('product-image-1');
       var productImgTwo = document.getElementById('product-image-2');
       var productImgThree = document.getElementById('product-image-3');
+             
+      if(productId == 1){
+      var productImgFour = document.getElementById('product-image-4')}
+ 
 
 
 
@@ -212,6 +228,9 @@
         productImgOne.style.backgroundColor = 'rgba(128, 128, 128, 0.281)'
         productImgTwo.style.backgroundColor = 'white';  
         productImgThree.style.backgroundColor = 'white';  
+               
+      if(productId == 1){
+        productImgFour.style.backgroundColor = 'white'}
         updateModel(productId );
       };
 
@@ -221,6 +240,10 @@
         productImgTwo.style.backgroundColor = 'rgba(128, 128, 128, 0.281)'
         productImgOne.style.backgroundColor = 'white';  
         productImgThree.style.backgroundColor = 'white';  
+               
+      if(productId == 1){
+        productImgFour.style.backgroundColor = 'white' }
+
         updateModel(productId + '_2');
       };
 
@@ -229,8 +252,27 @@
         productImgThree.style.backgroundColor = 'rgba(128, 128, 128, 0.281)'
         productImgOne.style.backgroundColor = 'white';  
         productImgTwo.style.backgroundColor = 'white'; 
+        
+            
+      if(productId == 1){
+        productImgFour.style.backgroundColor = 'white' 
+      }
+
         updateModel(productId + '_3'); 
       };
+       
+      if(productId == 1){
+        productImgFour.onclick = function(){
+        productImgThree.style.backgroundColor = 'white'
+        productImgOne.style.backgroundColor = 'white';  
+        productImgTwo.style.backgroundColor = 'white'; 
+        productImgFour.style.backgroundColor = 'rgba(128, 128, 128, 0.281)';
+        updateModel(productId + '_3'); 
+      }
+      
+   
+
+      }
 
 
     </script>
