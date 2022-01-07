@@ -66,7 +66,7 @@ class App{
 		this.renderer.setSize( window.innerWidth, window.innerHeight );
         this.renderer.outputEncoding = THREE.sRGBEncoding;
 
-        this.renderer.setClearColor( 0x000000 );
+        //this.renderer.setClearColor( 0x000000 );
         this.renderer.setPixelRatio( window.devicePixelRatio );
         this.renderer.setSize( window.innerWidth, window.innerHeight );
         this.renderer.shadowMap.enabled = true;
