@@ -123,7 +123,7 @@ class App{
         
 				const options = {
 					object: object,
-					speed: 2,
+					speed: 10,
 					// animations: gltf.animations,
 					// clip: gltf.animations[0],
 					app: self,
