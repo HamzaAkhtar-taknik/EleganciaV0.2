@@ -34,7 +34,7 @@ class App{
 		this.scene.add( new THREE.HemisphereLight( 0x606060, 0x404040 ) );
 
         const light = new THREE.DirectionalLight( 0xffffff );
-        light.position.set( 1, 1, 1 ).normalize(); // default; light shining from top
+        light.position.set( 0, 9, 6 ).normalize(); //1,1,1 default; light shining from top
         light.castShadow = true;
 		this.scene.add( light );
 
@@ -300,20 +300,20 @@ class App{
                 self.scene.add( self.knight.object ); 
             }
         });
-        this.gestures.addEventListener( 'doubletap', (ev)=>{
-            //console.log( 'doubletap'); 
-            self.ui.updateElement('info', 'doubletap' );
-        });
-        this.gestures.addEventListener( 'press', (ev)=>{
-            //console.log( 'press' );    
-            //ev.initialise = undefined;
-           // ev = 'undefined';
-            this.renderer.ev = 'undefined';
-            self.ui.updateElement('info', 'press' );
-        });
+        // this.gestures.addEventListener( 'doubletap', (ev)=>{
+        //     //console.log( 'doubletap'); 
+        //     self.ui.updateElement('info', 'doubletap' );
+        // });
+        // this.gestures.addEventListener( 'press', (ev)=>{
+        //     //console.log( 'press' );    
+        //     //ev.initialise = undefined;
+        //    // ev = 'undefined';
+        //     this.renderer.ev = 'undefined';
+        //     self.ui.updateElement('info', 'press' );
+        // });
         this.gestures.addEventListener( 'pan', (ev)=>{
             //console.log( ev );
-            
+            self.knight.object.speed = 9;
             if (ev.initialise !== undefined){
                 self.startPosition = self.knight.object.position.clone();
             }else{
@@ -322,16 +322,17 @@ class App{
                 self.ui.updateElement('info', `pan x:${ev.delta.x.toFixed(3)}, y:${ev.delta.y.toFixed(3)}, z:${ev.delta.z.toFixed(3)}` );
             } 
         });
-        this.gestures.addEventListener( 'swipe', (ev)=>{
-            //console.log( ev );   
-            // self.ui.updateElement('info', `swipe ${ev.direction}` );
-            // if (self.knight.object.visible){
-            //     self.knight.object.visible = false;
-            //     self.scene.remove( self.knight.object ); 
-            // }
-        });
+        // this.gestures.addEventListener( 'swipe', (ev)=>{
+        //     //console.log( ev );   
+        //     // self.ui.updateElement('info', `swipe ${ev.direction}` );
+        //     // if (self.knight.object.visible){
+        //     //     self.knight.object.visible = false;
+        //     //     self.scene.remove( self.knight.object ); 
+        //     // }
+        // });
         this.gestures.addEventListener( 'pinch', (ev)=>{
             //console.log( ev ); 
+            self.knight.object.speed = 1;
             if (ev.initialise !== undefined){
                 self.startScale = self.knight.object.scale.clone();
             }else{
@@ -342,6 +343,7 @@ class App{
         });
         this.gestures.addEventListener( 'rotate', (ev)=>{
             //      sconsole.log( ev ); 
+            self.knight.object.speed = 1;
             if (ev.initialise !== undefined){
                 self.startQuaternion = self.knight.object.quaternion.clone();
             }else{
