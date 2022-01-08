@@ -14,6 +14,8 @@ import { ControllerGestures } from './../../libs/three125/ControllerGestures.js'
 //https://tympanus.net/codrops/2019/09/17/how-to-build-a-color-customizer-app-for-a-3d-model-with-three-js/
 //https://medium.com/@akashkuttappa/using-3d-models-with-ar-js-and-a-frame-84d462efe498
 //https://stackoverflow.com/questions/69185593/issues-displaying-glb-model-on-html
+
+//https://discourse.threejs.org/t/model-not-casting-receiving-shadows/6146
 class App{    
 	constructor(id){
 		const container = document.createElement( 'div' );
@@ -24,35 +26,17 @@ class App{
 		//this.camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.01, 20 );
         this.camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.01, 20 );
 
+        this.camera.position.set( - 1.8, 0.9, 2.7 );
+
+
 		this.scene = new THREE.Scene(); 
         this.scene.add(this.camera);
 		this.scene.add( new THREE.HemisphereLight( 0x606060, 0x404040 ) );
 
-        // const light = new THREE.DirectionalLight( 0xffffff );
-        // light.position.set( 1, 1, 1 ).normalize(); // default; light shining from top
-		// this.scene.add( light );
-
-
-
-
-        const dirLight = new THREE.DirectionalLight(0xffffff, 1);
-        dirLight.position.set(0, 70, 100);
-        let d = 1000;
-        let r = 2;
-        let mapSize = 8192;
-        dirLight.castShadow = true;
-        dirLight.shadow.radius = r;
-        dirLight.shadow.mapSize.width = mapSize;
-        dirLight.shadow.mapSize.height = mapSize;
-        dirLight.shadow.camera.top = dirLight.shadow.camera.right = d;
-        dirLight.shadow.camera.bottom = dirLight.shadow.camera.left = -d;
-        dirLight.shadow.camera.near = 1;
-        dirLight.shadow.camera.far = 400000000;
-        //dirLight.shadow.camera.visible = true;
-    
-        this.scene.add(dirLight);
-        this.scene.add(new THREE.DirectionalLightHelper(dirLight, 10));
-    
+        const light = new THREE.DirectionalLight( 0xffffff );
+        light.position.set( 0, 5, 5 ).normalize(); //1,1,1 default; light shining from top
+        light.castShadow = true;
+		this.scene.add( light );
 
 
 
@@ -61,7 +45,13 @@ class App{
 		this.renderer.setSize( window.innerWidth, window.innerHeight );
         this.renderer.outputEncoding = THREE.sRGBEncoding;
 
+        //this.renderer.setClearColor( 0x000000 );
         this.renderer.shadowMap.enabled = true;
+        this.renderer.shadowMap.type = THREE.PCFSoftShadowMap; // default THREE.PCFShadowMap
+        // this.renderer.gammaOutput = true;
+        // this.renderer.gammaFactor = 2.2;
+
+
 
 		container.appendChild( this.renderer.domElement );
         
@@ -108,7 +98,7 @@ class App{
 
                 const object=gltf.scene.children[length-1];
 
-                object.traverse(function(child){
+                gltf.scene.traverse(function(child){
 					if (child.isMesh){
                         child.material.metalness = 0;
                         child.material.roughness = 1;
@@ -116,16 +106,24 @@ class App{
                         child.receiveShadow = true;
 
 					} 
-                   
 				});
 				
  
+                //  this.shadowPlane = new THREE.Mesh(
+                //     new THREE.PlaneBufferGeometry(),
+                //     new THREE.ShadowMaterial()
+                // );
+                // shadowPlane.rotateX(-1 * Math.PI / 2); // Rotate the plane to be flat on the ground
+                // shadowPlane.material.opacity = 0.3; // Make the plane semi-transparent so some of the ground is visible under the shadow
+                // shadowPlane.receiveShadow = true;
+                // trackerGroup.add(shadowPlane);
+                
                 
 
         
 				const options = {
 					object: object,
-					speed: 2,
+					speed: 10,
 					// animations: gltf.animations,
 					// clip: gltf.animations[0],
 					app: self,
@@ -302,20 +300,20 @@ class App{
                 self.scene.add( self.knight.object ); 
             }
         });
-        this.gestures.addEventListener( 'doubletap', (ev)=>{
-            //console.log( 'doubletap'); 
-            self.ui.updateElement('info', 'doubletap' );
-        });
-        this.gestures.addEventListener( 'press', (ev)=>{
-            //console.log( 'press' );    
-            //ev.initialise = undefined;
-           // ev = 'undefined';
-            this.renderer.ev = 'undefined';
-            self.ui.updateElement('info', 'press' );
-        });
+        // this.gestures.addEventListener( 'doubletap', (ev)=>{
+        //     //console.log( 'doubletap'); 
+        //     self.ui.updateElement('info', 'doubletap' );
+        // });
+        // this.gestures.addEventListener( 'press', (ev)=>{
+        //     //console.log( 'press' );    
+        //     //ev.initialise = undefined;
+        //    // ev = 'undefined';
+        //     this.renderer.ev = 'undefined';
+        //     self.ui.updateElement('info', 'press' );
+        // });
         this.gestures.addEventListener( 'pan', (ev)=>{
             //console.log( ev );
-            
+            self.knight.object.speed = 30;
             if (ev.initialise !== undefined){
                 self.startPosition = self.knight.object.position.clone();
             }else{
@@ -324,16 +322,17 @@ class App{
                 self.ui.updateElement('info', `pan x:${ev.delta.x.toFixed(3)}, y:${ev.delta.y.toFixed(3)}, z:${ev.delta.z.toFixed(3)}` );
             } 
         });
-        this.gestures.addEventListener( 'swipe', (ev)=>{
-            //console.log( ev );   
-            // self.ui.updateElement('info', `swipe ${ev.direction}` );
-            // if (self.knight.object.visible){
-            //     self.knight.object.visible = false;
-            //     self.scene.remove( self.knight.object ); 
-            // }
-        });
+        // this.gestures.addEventListener( 'swipe', (ev)=>{
+        //     //console.log( ev );   
+        //     // self.ui.updateElement('info', `swipe ${ev.direction}` );
+        //     // if (self.knight.object.visible){
+        //     //     self.knight.object.visible = false;
+        //     //     self.scene.remove( self.knight.object ); 
+        //     // }
+        // });
         this.gestures.addEventListener( 'pinch', (ev)=>{
             //console.log( ev ); 
+            self.knight.object.speed = 1;
             if (ev.initialise !== undefined){
                 self.startScale = self.knight.object.scale.clone();
             }else{
@@ -344,6 +343,7 @@ class App{
         });
         this.gestures.addEventListener( 'rotate', (ev)=>{
             //      sconsole.log( ev ); 
+            self.knight.object.speed = 1;
             if (ev.initialise !== undefined){
                 self.startQuaternion = self.knight.object.quaternion.clone();
             }else{
