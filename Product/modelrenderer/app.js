@@ -296,8 +296,7 @@ class App{
                     self.knight.object.rotateX( 1.5 );
                 }
                 
-                
-                
+            
 
                 self.scene.add( self.knight.object ); 
             }

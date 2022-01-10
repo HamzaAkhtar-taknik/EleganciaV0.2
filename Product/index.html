@@ -94,8 +94,11 @@
                                 document.getElementById(
                                         "product-large-image"
                                          ).innerHTML = ` <model-viewer 
-                                         camera-controls alt="Model" src= "./../assets/${modelId}.glb" height="500px" width="100%" >
-                                        </model-viewer/> `;
+                                         camera-controls alt="Model" src= "./../assets/${modelId}.glb" height="500px" width="100%" 
+                                          ar
+                                          auto-rotate
+                                          camera-controls
+                                         ></model-viewer/> `;
                             }
                 </script>
                     
@@ -166,8 +169,11 @@
             "product-large-image"
           ).innerHTML = `<model-viewer id="model-viewer-multiple" 
           // style="height:500px; width:100%;"
-                    camera-controls alt="Model" src= "./../assets/${productId}.glb" height="100%" width="100%" >
-                </model-viewer/>`;
+                    camera-controls alt="Model" src= "./../assets/${productId}.glb" height="100%" width="100%" 
+                    ar
+              auto-rotate
+              camera-controls
+               ></model-viewer/>`;
 
         document.getElementById(
             "product-name"
