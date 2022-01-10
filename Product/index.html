@@ -21,6 +21,13 @@
       type="module"
       src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"
     ></script>
+
+<style>
+  model-viewer {
+      width: 100%;
+      height: 100%;
+      }
+</style>
   </head>
   <body>
     <script type="module">
@@ -41,9 +48,9 @@
         </div>
  
       <div class="row col-lg-6 col-sm-12" >
-          <div  style="position: relative;" > 
+          <div  style="position: relative; height:500px;" > 
             <div
-              style="position: relative; display: flex; align-items: center; justify-content: center;"
+              style="position: relative; display: flex; align-items: center; justify-content: center; height:500px;"
               class="col col-lg-12"
               id="product-large-image"
             >
@@ -87,7 +94,7 @@
                                 document.getElementById(
                                         "product-large-image"
                                          ).innerHTML = ` <model-viewer 
-                                         camera-controls alt="Model" src= "./../assets/${modelId}.glb" height="100%" width="100%" >
+                                         camera-controls alt="Model" src= "./../assets/${modelId}.glb" height="500px" width="100%" >
                                         </model-viewer/> `;
                             }
                 </script>
@@ -153,14 +160,14 @@
         if (productDetails != null) {
        
           console.log("This is product name:",product.name)
-          //document.getElementById('product-large-image').innerHTML =` <img class="responsive" alt="product_image" src=${product.image[0]} width="500px" height="500px"   /> `;
           var path = "./../assets/" + productId + ".glb";
           console.log(path);
           document.getElementById(
             "product-large-image"
-          ).innerHTML = ` <model-viewer style="height:500px; width:100%"
+          ).innerHTML = `<model-viewer id="model-viewer-multiple" 
+          // style="height:500px; width:100%;"
                     camera-controls alt="Model" src= "./../assets/${productId}.glb" height="100%" width="100%" >
-                </model-viewer/> `;
+                </model-viewer/>`;
 
         document.getElementById(
             "product-name"
@@ -193,16 +200,7 @@
             "product-image-3"
           ).innerHTML = `<img src=".${product.image[2]}" height="100px" width ="100px"/>`;
 
-            if(product.id == 1){
-
-              document.getElementById(
-                        "product-image-4"
-                      ).innerHTML = `<img src=".${product.image[3]}" height="100px" width ="100px"/>`;
-
-
-
-            }
-
+         
         
 
         }
@@ -215,23 +213,12 @@
       var productImgTwo = document.getElementById('product-image-2');
       var productImgThree = document.getElementById('product-image-3');
              
-      if(productId == 1){
-      var productImgFour = document.getElementById('product-image-4')}
- 
-
-
-
- 
-
-
+     
       productImgOne.onclick = function() {
         productImgOne.style.backgroundColor = 'rgba(128, 128, 128, 0.281)'
         productImgTwo.style.backgroundColor = 'white';  
         productImgThree.style.backgroundColor = 'white';  
-               
-      if(productId == 1){
-        productImgFour.style.backgroundColor = 'white'}
-        updateModel(productId );
+
       };
 
 
@@ -240,10 +227,6 @@
         productImgTwo.style.backgroundColor = 'rgba(128, 128, 128, 0.281)'
         productImgOne.style.backgroundColor = 'white';  
         productImgThree.style.backgroundColor = 'white';  
-               
-      if(productId == 1){
-        productImgFour.style.backgroundColor = 'white' }
-
         updateModel(productId + '_2');
       };
 
@@ -252,27 +235,11 @@
         productImgThree.style.backgroundColor = 'rgba(128, 128, 128, 0.281)'
         productImgOne.style.backgroundColor = 'white';  
         productImgTwo.style.backgroundColor = 'white'; 
-        
-            
-      if(productId == 1){
-        productImgFour.style.backgroundColor = 'white' 
-      }
-
         updateModel(productId + '_3'); 
       };
        
-      if(productId == 1){
-        productImgFour.onclick = function(){
-        productImgThree.style.backgroundColor = 'white'
-        productImgOne.style.backgroundColor = 'white';  
-        productImgTwo.style.backgroundColor = 'white'; 
-        productImgFour.style.backgroundColor = 'rgba(128, 128, 128, 0.281)';
-        updateModel(productId + '_3'); 
-      }
+    
       
-   
-
-      }
 
 
     </script>
