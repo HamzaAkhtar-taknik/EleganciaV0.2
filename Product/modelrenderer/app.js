@@ -26,8 +26,10 @@ class App{
 		//this.camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.01, 20 );
         this.camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.01, 20 );
 
-        this.camera.position.set( - 1.8, 0.9, 2.7 );
-
+        //this.camera.position.set( - 1.8, 0.9, 2.7 );
+        this.camera.position.set( 0, 0, 3 );
+        
+        
 
 		this.scene = new THREE.Scene(); 
         this.scene.add(this.camera);
@@ -48,9 +50,9 @@ class App{
         //this.renderer.setClearColor( 0x000000 );
         this.renderer.shadowMap.enabled = true;
         this.renderer.shadowMap.type = THREE.PCFSoftShadowMap; // default THREE.PCFShadowMap
-        // this.renderer.gammaOutput = true;
-        // this.renderer.gammaFactor = 2.2;
-
+        this.renderer.gammaOutput = true;
+        this.renderer.gammaFactor = 2.2;
+       
 
 
 		container.appendChild( this.renderer.domElement );
@@ -109,16 +111,16 @@ class App{
 				});
 				
  
-                //  this.shadowPlane = new THREE.Mesh(
+                //  let shadowPlane = new THREE.Mesh(
                 //     new THREE.PlaneBufferGeometry(),
                 //     new THREE.ShadowMaterial()
                 // );
                 // shadowPlane.rotateX(-1 * Math.PI / 2); // Rotate the plane to be flat on the ground
                 // shadowPlane.material.opacity = 0.3; // Make the plane semi-transparent so some of the ground is visible under the shadow
                 // shadowPlane.receiveShadow = true;
-                // trackerGroup.add(shadowPlane);
+                // trackerGroup.add(shadowPlane); //trackerGroup
                 
-                
+            
 
         
 				const options = {
