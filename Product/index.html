@@ -58,7 +58,7 @@
             
             </div>
 
-            <div id="button-ar" style="position: absolute; bottom: 5px; right: 5px;" onclick="onClickfun();">
+            <div id="button-ar" style="position: absolute; bottom: 5px; right: 5px;" onclick="onClickfun();"> 
              
             </div>
 
@@ -98,7 +98,11 @@
                                           ar
                                           auto-rotate
                                           camera-controls
-                                         ></model-viewer/> `;
+                                         >
+                                         <button slot="ar-button" id="ar-button" onclick="onClickfun();">
+                    View in your space
+                  </button>
+                                         </model-viewer/> `;
                             }
                 </script>
                     
