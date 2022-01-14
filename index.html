@@ -85,7 +85,7 @@
               
               </model-viewer>
 
-              <button id="ar-button-desktop" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal"  style="position: absolute; bottom: 5px; right: 5px;">
+              <button id="ar-button-desktop" onclick="generateQRCode('#Home')" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal"  style="position: absolute; bottom: 5px; right: 5px;">
                 <img src="./assets/AR-logo.png" width="25px">
                </button>
 
@@ -123,10 +123,9 @@
                     camera-controls
                   >
                   
-                  
-
                 </model-viewer>
-                <button id="ar-button-desktop2" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal"  style="position: absolute; bottom: 5px; right: 5px;">
+
+                <button id="ar-button-desktop2" onclick="generateQRCode('#About')" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal"  style="position: absolute; bottom: 5px; right: 5px;">
                   <img src="./assets/AR-logo.png" width="25px">
                  </button>
 
@@ -161,7 +160,6 @@
 
 function readURL(input) 
 {
-   // document.getElementById("modelviewer").style.display = "block";
 
     if (input.files && input.files[0]) {
         var reader = new FileReader();
@@ -170,27 +168,12 @@ function readURL(input)
           console.log(e.target.result);
 
             document.getElementById('modelviewer').src =  e.target.result;
-
-            // var path = e.target.result;
-            //             document.getElementById(
-            //                 "modelviewer"
-            //                  ).innerHTML = ` <model-viewer 
-            //                   alt="Model" src= "${path}" style="height: 400px;" 
-            //                  shadow-intensity="1"
-            //                   ar ar-modes="webxr scene-viewer quick-look"
-            //                   auto-rotate
-            //                   camera-controls
-            //                  >
-                           
-            //                  </model-viewer/> `;
         }
 
         reader.readAsDataURL(input.files[0]);
         
     }
 }
-
-    
         
       </script> 
 
@@ -217,9 +200,9 @@ function readURL(input)
       
       <script>
           
-                  function generateQRCode() {
+                  function generateQRCode(focusOn) {
                       
-                      let website = window.location.href;
+                      let website = window.location.href+focusOn;
                       if (website) {
                         let qrcodeContainer = document.getElementById("qrcode");
                         qrcodeContainer.innerHTML = "";
@@ -231,7 +214,7 @@ function readURL(input)
                         alert("unable to fetch the url of the page");
                       }
                     }
-                  generateQRCode();
+                  //generateQRCode();
         </script>
       </div>
     </div>
