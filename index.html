@@ -76,7 +76,14 @@
             ar ar-modes="webxr scene-viewer quick-look"
               auto-rotate
               camera-controls
-               ></model-viewer>
+               >
+              
+              
+               <button id="ar-button-desktop" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal"  style="position: absolute; bottom: 5px; right: 5px;">
+                <img src="../assets/AR-logo.png" width="25px">
+               </button>
+              
+              </model-viewer>
 
 
           </div>
@@ -113,6 +120,10 @@
                     camera-controls
                   >
                   
+                  <button id="ar-button-desktop2" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal"  style="position: absolute; bottom: 5px; right: 5px;">
+                    <img src="../assets/AR-logo.png" width="25px">
+                   </button>
+
                 </model-viewer>
 
                 <form method="post" enctype="multipart/form-data"></form>
@@ -132,6 +143,7 @@
      </div>
 
     
+
     
       <!-- <div class="preview">
         <p>No files currently selected for upload</p>
@@ -184,6 +196,30 @@ function readURL(input)
       </div>
 
     </form>
+
+
+    <script type="text/javascript"> 
+
+ 
+              
+      var ARButton = document.getElementById('ar-button-desktop');
+
+      var ARButton2 = document.getElementById('ar-button-desktop2');
+
+        if(screen.width > 991){
+          console.log("QR");
+        
+    
+        }
+        else{
+          console.log('ar');    
+          ARButton.style.display = "none"
+          ARButton2.style.display = "none"
+          console.log('ar button is hidden on screen < 911');
+    
+    
+        }
+      </script>
 
 <!-- Product Section -->
           <div id="Product" class="row products-section">
