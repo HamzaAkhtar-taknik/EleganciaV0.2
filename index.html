@@ -24,7 +24,8 @@
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 
 
-    <!-- Model viewer Style-->
+    <!-- QRCode -->
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
 
 
 
@@ -197,6 +198,43 @@ function readURL(input)
 
     </form>
 
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" style="text-align: center;">Please scan with your mobile camera
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div id="qrcode" style="display: flex; justify-content: center; align-items: center;">
+
+        </div> 
+      
+      <script>
+          
+                  function generateQRCode() {
+                      
+                      let website = window.location.href;
+                      if (website) {
+                        let qrcodeContainer = document.getElementById("qrcode");
+                        qrcodeContainer.innerHTML = "";
+                        new QRCode(qrcodeContainer, website);
+                        console.log(website)
+
+                      // document.getElementById("qrcode-container").style.display = "block";
+                      } else {
+                        alert("unable to fetch the url of the page");
+                      }
+                    }
+                  generateQRCode();
+        </script>
+      </div>
+    </div>
+  </div>
+</div>
+</div> 
 
     <script type="text/javascript"> 
 
