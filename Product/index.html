@@ -73,86 +73,85 @@
             
             </div>
 
-            <div id="button-ar" style="position: absolute; bottom: 5px; right: 5px;"> 
-
-            </div>
-
 
          
-            <!-- <button onclick="generateQRCode();">QR Code</button> -->
-       
-            <div id="qrcode">
+          
 
-            </div> 
+          
+           
 
-        <script>
-            $(function(){
-            // Enables popover
-            $("[data-toggle=popover]").popover();
 
-        });
-     
+            <!-- Button trigger modal -->
+<button id="ar-button-desktop" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal"  style="position: absolute; bottom: 5px; right: 5px;">
+ <img src="../assets/AR-logo.png" width="25px">
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" style="text-align: center;">Please scan with your mobile camera
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div id="qrcode" style="display: flex; justify-content: center; align-items: center;">
+
+        </div> 
+      
+      <script>
+          
+                  function generateQRCode() {
+                      
+                      let website = window.location.href;
+                      if (website) {
+                        let qrcodeContainer = document.getElementById("qrcode");
+                        qrcodeContainer.innerHTML = "";
+                        new QRCode(qrcodeContainer, website);
+                        console.log(website)
+
+                      // document.getElementById("qrcode-container").style.display = "block";
+                      } else {
+                        alert("unable to fetch the url of the page");
+                      }
+                    }
+                  generateQRCode();
+        </script>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript"> 
+
+ 
+              
+  var ARButton = document.getElementById('ar-button-desktop');
+   
+    if(screen.width > 991){
+      console.log("QR");
+    
+
+    }
+    else{
+      console.log('ar');    
+      ARButton.style.display = "none"
+      console.log('ar button is hidden on screen < 911');
+
+
+    }
+  </script>
+
+
+
+
+
 
 
 
            
-        </script>
-
-          
-            <!-- <a tabindex="0"
-            id="popqr"
-            onclick="generateQRCode()"
-            class="btn btn-lg btn-primary" 
-            role="button" 
-            data-html="true" 
-            data-toggle="popover" 
-            data-trigger="focus" 
-            title="<b>Example popover</b> - title" 
-            data-content="<div id='qrcode'></div>">QR</a>
-            -->
-            
-            <script type="text/javascript"> 
-
- 
-              
-            var ARButton = document.getElementById('button-ar');
-             
-              if(screen.width > 991){
-                console.log("QR");
-                ARButton.onclick = generateQRCode;
-
-              }
-              else{
-                console.log('ar');
-                ARButton.onclick = onClickfun;
-                ARButton.style.display = "none"
-                console.log('ar button is hidden on screen < 911');
-
-
-              }
-              
-              
-              function generateQRCode() {
-                let website = window.location.href;
-                if (website) {
-                  let qrcodeContainer = document.getElementById("qrcode");
-                  qrcodeContainer.innerHTML = "";
-                  new QRCode(qrcodeContainer, website);
-                  console.log(website)
-        
-                 // document.getElementById("qrcode-container").style.display = "block";
-                } else {
-                  alert("unable to fetch the url of the page");
-                }
-              }
-        //this is a duplicated function added for testing
-              function onClickfun() {
-            console.log("onClickfun called!");
-            console.log(productId);
-            window.location.href = "modelrenderer/?productId=" + productId;
-          }
-            </script>
-            
+     
             
           </div>  
        
@@ -280,9 +279,9 @@
             "product-name"
           ).innerHTML = `${product.name} `;
 
-         document.getElementById(
-            "button-ar"
-          ).innerHTML = `<img src="../assets/AR-logo.png" height="50px" width="50px" alt="button-ar">`;
+        //  document.getElementById(
+        //     "button-ar"
+        //   ).innerHTML = `<img src="../assets/AR-logo.png" height="50px" width="50px" alt="button-ar">`;
 
 
         

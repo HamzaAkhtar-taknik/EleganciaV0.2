@@ -98,6 +98,7 @@ transition: 0.2s all ease-in-out;
     padding:10px;
     text-align: center;
     font-weight: bold;
+    margin-bottom: 2.5rem;
 
 }
 #view-in-your-space:hover{
@@ -171,3 +172,22 @@ transition: 0.2s all ease-in-out;
 }
 
   }
+
+
+  input[type="file"] {
+    display: none;
+}
+
+.custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 60%;
+    margin: 0.5rem;
+}
+.custom-file-upload:hover{
+    background-color: rgba(128, 128, 128, 0.281);
+   
+}

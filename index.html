@@ -105,7 +105,7 @@
             <div  class="col col col-lg-4">
              
               
-                <div class="container" style="display:flex; justify-content:center" >
+                <div class="container" style="display:flex; justify-content:center;align-items: center; flex-direction: column;" >
                  <model-viewer id="modelviewer" class="chair-orange-model"  style="height: 400px;" camera-controls alt="Model" src="./assets/chair3.glb"  
                  shadow-intensity="1"
                  ar ar-modes="webxr scene-viewer quick-look"
@@ -114,18 +114,25 @@
                   >
                   
                 </model-viewer>
+
+                <form method="post" enctype="multipart/form-data"></form>
+    
+                <label class="custom-file-upload">
+                  <input style="border: 1px solid black;" type="file" id="model_uploads" name="model_uploads" accept=".glb" onchange="readURL(this);" multiple>
+                   Upload Model
+              </label>
                   
                 </div>
               
             </div>
 
+            
+
      </div>
      </div>
 
-     <form method="post" enctype="multipart/form-data"></form>
-      <div>
-        <input  type="file" id="model_uploads" name="model_uploads" accept=".glb" onchange="readURL(this);" multiple>
-      </div>
+    
+    
       <!-- <div class="preview">
         <p>No files currently selected for upload</p>
       </div>
