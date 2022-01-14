@@ -75,6 +75,7 @@
 
             height: 80%;" camera-controls alt="Model" src="./assets/chair1.glb"
             shadow-intensity="1"
+            
             ar ar-modes="webxr scene-viewer quick-look"
               auto-rotate
               camera-controls
@@ -116,7 +117,7 @@
              
               
                 <div class="container" style="display:flex; justify-content:center;align-items: center; flex-direction: column;" >
-                 <model-viewer id="modelviewer" class="chair-orange-model"  style="height: 400px;" camera-controls alt="Model" src="./assets/chair3.glb"  
+                 <model-viewer id="modelviewer" autoplay class="chair-orange-model"  style="height: 400px;" camera-controls alt="Model" src="./assets/chair3.glb"  
                  shadow-intensity="1"
                  ar ar-modes="webxr scene-viewer quick-look"
                     auto-rotate
@@ -132,7 +133,7 @@
                 <form method="post" enctype="multipart/form-data"></form>
     
                 <label class="custom-file-upload">
-                  <input style="border: 1px solid black;" type="file" id="model_uploads" name="model_uploads" accept=".glb" onchange="readURL(this);" multiple>
+                  <input style="border: 1px solid black;" type="file" id="model_uploads" name="model_uploads" accept=".glb, .gltf" onchange="readURL(this);" multiple>
                    Upload Model
               </label>
                   
